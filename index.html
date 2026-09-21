@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Parkour</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: white;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* =========================
+           شاشة اختيار المراحل
+        ========================== */
+
+        #menu {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at center, #20202b 0%, #0b0b0f 60%);
+        }
+
+        #menu h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        #menu p {
+            color: #aaa;
+            margin-bottom: 35px;
+        }
+
+        .levels {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            width: min(700px, 90%);
+        }
+
+        .level {
+            height: 110px;
+            border: 2px solid #333;
+            border-radius: 15px;
+            background: #15151c;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 20px;
+        }
+
+        .level:hover {
+            transform: translateY(-5px);
+            border-color: white;
+            background: #24242e;
+        }
+
+        .level span {
+            display: block;
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           اللعبة
+        ========================== */
+
+        #game {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(#151525, #08080d);
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* معلومات المرحلة */
+
+        #topBar {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .info {
+            background: rgba(0, 0, 0, 0.65);
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        #backButton {
+            pointer-events: auto;
+            cursor: pointer;
+            background: #16161d;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+
+        /* =========================
+           أزرار الهاتف
+        ========================== */
+
+        #controls {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 25px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .controlGroup {
+            display: flex;
+            gap: 15px;
+        }
+
+        .control {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 2px solid #555;
+            background: rgba(20, 20, 25, 0.85);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+            pointer-events: auto;
+        }
+
+        .control:active {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           شاشة الفوز
+        ========================== */
+
+        #winScreen {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 20;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .winBox {
+            background: #15151c;
+            border: 2px solid #444;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            width: min(400px, 90%);
+        }
+
+        .winBox h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .winBox button {
+            margin-top: 20px;
+            padding: 14px 25px;
+            border-radius: 10px;
+            border: none;
+            background: white;
+            color: black;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        /* الهاتف */
+
+        @media (max-width: 700px) {
+            #menu h1 {
+                font-size: 35px;
+            }
+
+            .levels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .level:last-child {
+                grid-column: span 2;
+            }
+
+            .control {
+                width: 65px;
+                height: 65px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         القائمة الرئيسية
+    ========================== -->
+
+    <section id="menu">
+
+        <h1>SHADOW PARKOUR</h1>
+
+        <p>اختر المرحلة وابدأ التحدي</p>
+
+        <div class="levels">
+
+            <button class="level" onclick="startLevel(1)">
+                <span>1</span>
+                البداية
+            </button>
+
+            <button class="level" onclick="startLevel(2)">
+                <span>2</span>
+                القفز
+            </button>
+
+            <button class="level" onclick="startLevel(3)">
+                <span>3</span>
+                الصعوبة
+            </button>
+
+            <button class="level" onclick="startLevel(4)">
+                <span>4</span>
+                الموت
+            </button>
+
+            <button class="level" onclick="startLevel(5)">
+                <span>5</span>
+                النهاية
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         اللعبة
+    ========================== -->
+
+    <section id="game">
+
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="topBar">
+
+            <div class="info">
+                المرحلة:
+                <span id="levelNumber">1</span>
+            </div>
+
+            <button id="backButton" onclick="backToMenu()">
+                القائمة
+            </button>
+
+        </div>
+
+
+        <!-- أزرار التحكم -->
+
+        <div id="controls">
+
+            <div class="controlGroup">
+
+                <button
+                    class="control"
+                    id="leftBtn">
+                    ◀
+                </button>
+
+                <button
+                    class="control"
+                    id="rightBtn">
+                    ▶
+                </button>
+
+            </div>
+
+            <button
+                class="control"
+                id="jumpBtn">
+                ▲
+            </button>
+
+        </div>
+
+
+        <!-- شاشة الفوز -->
+
+        <div id="winScreen">
+
+            <div class="winBox">
+
+                <h2>🎉 فزت!</h2>
+
+                <p>
+                    لقد أكملت المرحلة بنجاح.
+                </p>
+
+                <button onclick="restartLevel()">
+                    إعادة المرحلة
+                </button>
+
+                <button onclick="backToMenu()">
+                    المراحل
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+<script>
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const menu = document.getElementById("menu");
+const game = document.getElementById("game");
+
+const levelNumber = document.getElementById("levelNumber");
+const winScreen = document.getElementById("winScreen");
+
+let currentLevel = 1;
+
+let cameraX = 0;
+
+let keys = {
+    left: false,
+    right: false
+};
+
+let player = {
+    x: 100,
+    y: 300,
+
+    width: 30,
+    height: 45,
+
+    vx: 0,
+    vy: 0,
+
+    speed: 5,
+    jump: 13,
+
+    grounded: false
+};
+
+let platforms = [];
+
+let goal = {
+    x: 0,
+    y: 0,
+    width: 45,
+    height: 70
+};
+
+const gravity = 0.6;
+
+
+/* =========================
+   ضبط حجم الشاشة
+========================= */
+
+function resizeCanvas() {
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+
+
+/* =========================
+   إنشاء المراحل
+========================= */
+
+function createLevel(level) {
+
+    platforms = [];
+
+    const groundY = canvas.height - 100;
+
+    // منصة البداية
+    platforms.push({
+        x: 0,
+        y: groundY,
+        width: 500,
+        height: 100
+    });
+
+
+    if (level === 1) {
+
+        platforms.push(
+            {
+                x: 600,
+                y: groundY - 80,
+                width: 180,
+                height: 30
+            },
+
+            {
+                x: 900,
+                y: groundY - 140,
+                width: 180,
+                height: 30
+            },
+
+            {
+                x: 1200,
+                y: groundY - 60,
+                width: 250,
+                height: 30
+            },
+
+            {
+                x: 1550,
+                y: groundY - 120,
+                width: 250,
+                height: 30
+            }
+        );
+
+    }
+
+
+    if (level === 2) {
+
+        platforms.push(
+            {
+                x: 550,
+                y: groundY - 120,
+                width: 130,
+                height: 30
+            },
+
+            {
+                x: 800,
+                y: groundY - 220,
+                width: 130,
+                height: 30
+            },
+
+            {
+                x: 1050,
+                y: groundY - 100,
+                width: 130,
+                height: 30
+            },
+
+            {
+                x: 1300,
+                y: groundY - 240,
+                width: 130,
+                height: 30
+            },
+
+            {
+                x: 1600,
+                y: groundY - 120,
+                width: 200,
+                height: 30
+            }
+        );
+
+    }
+
+
+    if (level === 3) {
+
+        platforms.push(
+            {
+                x: 500,
+                y: groundY - 150,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 700,
+                y: groundY - 250,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 900,
+                y: groundY - 100,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 1100,
+                y: groundY - 300,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 1350,
+                y: groundY - 180,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 1600,
+                y: groundY - 280,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 1850,
+                y: groundY - 150,
+                width: 250,
+                height: 30
+            }
+        );
+
+    }
+
+
+    if (level === 4) {
+
+        platforms.push(
+            {
+                x: 550,
+                y: groundY - 100,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 750,
+                y: groundY - 200,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 950,
+                y: groundY - 320,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 1150,
+                y: groundY - 180,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 1350,
+                y: groundY - 300,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 1550,
+                y: groundY - 120,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 1750,
+                y: groundY - 250,
+                width: 90,
+                height: 25
+            },
+
+            {
+                x: 2000,
+                y: groundY - 100,
+                width: 250,
+                height: 30
+            }
+        );
+
+    }
+
+
+    if (level === 5) {
+
+        platforms.push(
+            {
+                x: 550,
+                y: groundY - 100,
+                width: 100,
+                height: 25
+            },
+
+            {
+                x: 750,
+                y: groundY - 180,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 950,
+                y: groundY - 260,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 1150,
+                y: groundY - 340,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 1400,
+                y: groundY - 200,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 1600,
+                y: groundY - 320,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 1800,
+                y: groundY - 180,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 2050,
+                y: groundY - 300,
+                width: 80,
+                height: 25
+            },
+
+            {
+                x: 2300,
+                y: groundY - 150,
+                width: 350,
+                height: 30
+            }
+        );
+
+    }
+
+
+    // مكان النهاية
+
+    const lastPlatform =
+        platforms[platforms.length - 1];
+
+    goal.x =
+        lastPlatform.x +
+        lastPlatform.width -
+        70;
+
+    goal.y =
+        lastPlatform.y -
+        70;
+
+}
+
+
+/* =========================
+   بدء المرحلة
+========================= */
+
+function startLevel(level) {
+
+    currentLevel = level;
+
+    menu.style.display = "none";
+    game.style.display = "block";
+
+    levelNumber.textContent = level;
+
+    winScreen.style.display = "none";
+
+    player.x = 100;
+    player.y = 200;
+
+    player.vx = 0;
+    player.vy = 0;
+
+    cameraX = 0;
+
+    createLevel(level);
+
+}
+
+
+/* =========================
+   العودة للقائمة
+========================= */
+
+function backToMenu() {
+
+    game.style.display = "none";
+    menu.style.display = "flex";
+
+    winScreen.style.display = "none";
+
+}
+
+
+/* =========================
+   إعادة المرحلة
+========================= */
+
+function restartLevel() {
+
+    startLevel(currentLevel);
+
+}
+
+
+/* =========================
+   التحكم بالكيبورد
+========================= */
+
+window.addEventListener("keydown", function(e) {
+
+    if (
+        e.key === "ArrowLeft" ||
+        e.key.toLowerCase() === "a"
+    ) {
+
+        keys.left = true;
+
+    }
+
+    if (
+        e.key === "ArrowRight" ||
+        e.key.toLowerCase() === "d"
+    ) {
+
+        keys.right = true;
+
+    }
+
+    if (
+        e.key === "ArrowUp" ||
+        e.key === " " ||
+        e.key.toLowerCase() === "w"
+    ) {
+
+        jump();
+
+    }
+
+});
+
+
+window.addEventListener("keyup", function(e) {
+
+    if (
+        e.key === "ArrowLeft" ||
+        e.key.toLowerCase() === "a"
+    ) {
+
+        keys.left = false;
+
+    }
+
+    if (
+        e.key === "ArrowRight" ||
+        e.key.toLowerCase() === "d"
+    ) {
+
+        keys.right = false;
+
+    }
+
+});
+
+
+/* =========================
+   أزرار الهاتف
+========================= */
+
+function holdButton(button, actionDown, actionUp) {
+
+    button.addEventListener("pointerdown", function(e) {
+
+        e.preventDefault();
+
+        actionDown();
+
+    });
+
+    button.addEventListener("pointerup", function(e) {
+
+        e.preventDefault();
+
+        actionUp();
+
+    });
+
+    button.addEventListener("pointercancel", actionUp);
+
+    button.addEventListener("pointerleave", actionUp);
+
+}
+
+
+holdButton(
+    document.getElementById("leftBtn"),
+    () => keys.left = true,
+    () => keys.left = false
+);
+
+
+holdButton(
+    document.getElementById("rightBtn"),
+    () => keys.right = true,
+    () => keys.right = false
+);
+
+
+document.getElementById("jumpBtn")
+    .addEventListener("pointerdown", function(e) {
+
+        e.preventDefault();
+
+        jump();
+
+    });
+
+
+/* =========================
+   القفز
+========================= */
+
+function jump() {
+
+    if (player.grounded) {
+
+        player.vy = -player.jump;
+
+        player.grounded = false;
+
+    }
+
+}
+
+
+/* =========================
+   التصادم
+========================= */
+
+function collision(a, b) {
+
+    return (
+        a.x < b.x + b.width &&
+        a.x + a.width > b.x &&
+        a.y < b.y + b.height &&
+        a.y + a.height > b.y
+    );
+
+}
+
+
+/* =========================
+   تحديث اللاعب
+========================= */
+
+function update() {
+
+    if (game.style.display === "none") {
+
+        return;
+
+    }
+
+
+    // الحركة
+
+    if (keys.left) {
+
+        player.vx = -player.speed;
+
+    }
+
+    else if (keys.right) {
+
+        player.vx = player.speed;
+
+    }
+
+    else {
+
+        player.vx *= 0.8;
+
+    }
+
+
+    player.x += player.vx;
+
+
+    // الجاذبية
+
+    player.vy += gravity;
+
+    player.y += player.vy;
+
+    player.grounded = false;
+
+
+    // تصادم المنصات
+
+    for (const platform of platforms) {
+
+        const previousBottom =
+            player.y + player.height - player.vy;
+
+        const playerBottom =
+            player.y + player.height;
+
+
+        if (
+            player.x + player.width > platform.x &&
+            player.x < platform.x + platform.width &&
+            previousBottom <= platform.y &&
+            playerBottom >= platform.y &&
+            player.vy >= 0
+        ) {
+
+            player.y =
+                platform.y -
+                player.height;
+
+            player.vy = 0;
+
+            player.grounded = true;
+
+        }
+
+    }
+
+
+    // الكاميرا
+
+    const targetCamera =
+        player.x - canvas.width * 0.35;
+
+    cameraX +=
+        (targetCamera - cameraX) * 0.08;
+
+
+    if (cameraX < 0) {
+
+        cameraX = 0;
+
+    }
+
+
+    // السقوط
+
+    if (player.y > canvas.height + 200) {
+
+        restartLevel();
+
+    }
+
+
+    // الوصول للنهاية
+
+    if (collision(player, goal)) {
+
+        winScreen.style.display = "flex";
+
+    }
+
+}
+
+
+/* =========================
+   رسم اللعبة
+========================= */
+
+function draw() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    // خلفية
+
+    ctx.fillStyle = "#09090e";
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    // دوائر خلفية
+
+    ctx.fillStyle = "#151520";
+
+    for (let i = 0; i < 20; i++) {
+
+        const x =
+            ((i * 300) - cameraX * 0.2) %
+            (canvas.width + 300);
+
+        const y =
+            100 +
+            (i % 5) * 100;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            2,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+
+    }
+
+
+    // المنصات
+
+    for (const platform of platforms) {
+
+        const x =
+            platform.x - cameraX;
+
+        if (
+            x + platform.width < 0 ||
+            x > canvas.width
+        ) {
+
+            continue;
+
+        }
+
+
+        ctx.fillStyle = "#292933";
+
+        ctx.fillRect(
+            x,
+            platform.y,
+            platform.width,
+            platform.height
+        );
+
+
+        ctx.fillStyle = "#777";
+
+        ctx.fillRect(
+            x,
+            platform.y,
+            platform.width,
+            3
+        );
+
+    }
+
+
+    // الهدف
+
+    const goalX =
+        goal.x - cameraX;
+
+
+    ctx.fillStyle = "#ffffff";
+
+    ctx.fillRect(
+        goalX,
+        goal.y,
+        5,
+        goal.height
+    );
+
+
+    ctx.fillStyle = "#ffffff";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        goalX + 5,
+        goal.y
+    );
+
+    ctx.lineTo(
+        goalX + 45,
+        goal.y + 15
+    );
+
+    ctx.lineTo(
+        goalX + 5,
+        goal.y + 30
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    // اللاعب الأسود
+
+    const playerX =
+        player.x - cameraX;
+
+
+    ctx.fillStyle = "#000000";
+
+    ctx.fillRect(
+        playerX,
+        player.y,
+        player.width,
+        player.height
+    );
+
+
+    // الرأس
+
+    ctx.beginPath();
+
+    ctx.arc(
+        playerX + player.width / 2,
+        player.y - 7,
+        11,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    // عين بسيطة
+
+    ctx.fillStyle = "#ffffff";
+
+    ctx.fillRect(
+        playerX + 19,
+        player.y - 10,
+        3,
+        3
+    );
+
+}
+
+
+/* =========================
+   Game Loop
+========================= */
+
+function gameLoop() {
+
+    update();
+
+    draw();
+
+    requestAnimationFrame(gameLoop);
+
+}
+
+gameLoop();
+
+</script>
+
+</body>
+</html>
