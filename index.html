@@ -2,2416 +2,2965 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0f14">
-<title>FitTrack — التغذية والتمارين</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b1020">
+<title>FitTrack Pro — التغذية والتمارين</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
 :root{
-    --bg:#070a0f;
-    --card:#0e141c;
-    --card2:#121a24;
-    --border:#202b38;
-    --text:#f5f7fa;
-    --muted:#8e9aaa;
-    --green:#35e58c;
-    --green2:#1ebd70;
-    --blue:#4da3ff;
-    --orange:#ffad42;
-    --red:#ff5e68;
-    --purple:#a879ff;
-    --radius:22px;
+  --bg:#070b14;
+  --panel:#0f1627;
+  --panel2:#141d31;
+  --card:#111a2d;
+  --border:rgba(255,255,255,.08);
+  --text:#f7f9ff;
+  --muted:#8e9ab2;
+  --primary:#6c63ff;
+  --primary2:#8b7cff;
+  --green:#21d48a;
+  --orange:#ffb547;
+  --red:#ff5d73;
+  --blue:#4da3ff;
+  --shadow:0 20px 50px rgba(0,0,0,.25);
+  --radius:22px;
 }
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:'Cairo',sans-serif;
-    background:
-      radial-gradient(circle at 20% 0%,rgba(53,229,140,.08),transparent 30%),
-      radial-gradient(circle at 100% 20%,rgba(77,163,255,.07),transparent 30%),
-      var(--bg);
-    color:var(--text);
-    min-height:100vh;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(108,99,255,.14),transparent 30%),
+    radial-gradient(circle at 90% 10%,rgba(33,212,138,.08),transparent 25%),
+    var(--bg);
+  color:var(--text);
+  font-family:
+    "Tajawal",
+    "Cairo",
+    Arial,
+    sans-serif;
 }
 
 button,input,select{
-    font-family:inherit;
+  font:inherit;
 }
 
 button{
-    cursor:pointer;
+  cursor:pointer;
 }
 
 .hidden{
-    display:none!important;
+  display:none!important;
 }
 
-/* ---------- Welcome ---------- */
+/* =========================
+   LANDING
+========================= */
 
-#welcome{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:25px;
+.screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
 }
 
 .welcome-box{
-    width:100%;
-    max-width:600px;
-    text-align:center;
+  width:min(600px,100%);
+  text-align:center;
+  padding:45px 30px;
 }
 
 .logo{
-    width:82px;
-    height:82px;
-    margin:0 auto 25px;
-    border-radius:25px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:40px;
-    background:linear-gradient(135deg,var(--green),#1aa9ff);
-    box-shadow:0 20px 60px rgba(53,229,140,.15);
+  width:90px;
+  height:90px;
+  margin:0 auto 25px;
+  border-radius:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  background:linear-gradient(135deg,var(--primary),#42d9a4);
+  box-shadow:0 20px 50px rgba(108,99,255,.3);
 }
 
 .welcome-box h1{
-    font-size:clamp(34px,7vw,58px);
-    line-height:1.1;
-    margin-bottom:15px;
-}
-
-.gradient{
-    color:var(--green);
+  font-size:42px;
+  margin-bottom:12px;
 }
 
 .welcome-box p{
-    color:var(--muted);
-    margin-bottom:35px;
-    font-size:16px;
-}
-
-.name-input{
-    width:100%;
-    height:62px;
-    background:var(--card);
-    border:1px solid var(--border);
-    color:white;
-    border-radius:18px;
-    padding:0 20px;
-    font-size:17px;
-    outline:none;
-    text-align:right;
-}
-
-.name-input:focus{
-    border-color:var(--green);
-}
-
-.primary-btn{
-    border:0;
-    background:linear-gradient(135deg,var(--green),var(--green2));
-    color:#06100b;
-    font-weight:900;
-    height:58px;
-    border-radius:17px;
-    padding:0 28px;
-    font-size:16px;
-    margin-top:15px;
-    width:100%;
-    transition:.2s;
-}
-
-.primary-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 30px rgba(53,229,140,.18);
-}
-
-/* ---------- Setup ---------- */
-
-#setup{
-    min-height:100vh;
-    padding:35px 18px;
-}
-
-.setup-container{
-    width:100%;
-    max-width:850px;
-    margin:auto;
-}
-
-.top-title{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.top-title h2{
-    font-size:30px;
-}
-
-.top-title p{
-    color:var(--muted);
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:30px;
 }
 
 .form-card{
-    background:rgba(14,20,28,.9);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px;
+  background:rgba(15,22,39,.85);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:25px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(20px);
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
+.input-group{
+  margin-bottom:18px;
+  text-align:right;
 }
 
-.field label{
-    display:block;
-    color:#c8d0da;
-    font-size:14px;
-    margin-bottom:8px;
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+  color:#cdd5e5;
+  font-size:14px;
 }
 
-.field input,
-.field select{
-    width:100%;
-    height:54px;
-    background:#090e14;
-    border:1px solid var(--border);
-    color:white;
-    border-radius:15px;
-    padding:0 14px;
-    outline:none;
+input,select{
+  width:100%;
+  padding:15px 16px;
+  border-radius:15px;
+  border:1px solid var(--border);
+  background:#0b1220;
+  color:var(--text);
+  outline:none;
+  transition:.2s;
 }
 
-.field input:focus,
-.field select:focus{
-    border-color:var(--green);
+input:focus,select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(108,99,255,.12);
 }
 
-.goal-box{
-    margin-top:20px;
+.btn{
+  border:none;
+  border-radius:15px;
+  padding:14px 20px;
+  color:white;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  transition:.2s;
+  font-weight:800;
 }
 
-.goal-options{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
 }
 
-.goal{
-    padding:16px 8px;
-    border:1px solid var(--border);
-    background:#090e14;
-    border-radius:15px;
-    text-align:center;
-    color:#c5ced9;
-    transition:.2s;
+.btn.secondary{
+  background:#202b42;
 }
 
-.goal.active{
-    border-color:var(--green);
-    background:rgba(53,229,140,.08);
-    color:var(--green);
+.btn.green{
+  background:linear-gradient(135deg,#17b978,#35dc9b);
 }
 
-/* ---------- App ---------- */
+.btn.red{
+  background:linear-gradient(135deg,#e8445b,#ff7082);
+}
 
-#app{
-    min-height:100vh;
-    display:flex;
+.btn.full{
+  width:100%;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  min-height:100vh;
 }
 
 .sidebar{
-    width:250px;
-    min-height:100vh;
-    background:#090e14;
-    border-left:1px solid var(--border);
-    padding:25px 15px;
-    position:fixed;
-    right:0;
-    top:0;
-    bottom:0;
-    z-index:20;
+  position:fixed;
+  top:0;
+  right:0;
+  width:255px;
+  height:100vh;
+  padding:25px 18px;
+  background:rgba(10,15,28,.95);
+  border-left:1px solid var(--border);
+  z-index:100;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:21px;
-    font-weight:900;
-    padding:10px;
-    margin-bottom:30px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:5px 10px 25px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:20px;
 }
 
 .brand-icon{
-    width:40px;
-    height:40px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:var(--green);
-    color:#06100b;
-    border-radius:12px;
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--primary),#32d99b);
+  font-size:23px;
+}
+
+.brand strong{
+  font-size:18px;
 }
 
 .nav{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
 .nav button{
-    border:0;
-    background:transparent;
-    color:#8f9bab;
-    padding:14px;
-    border-radius:14px;
-    text-align:right;
-    font-size:15px;
+  width:100%;
+  padding:14px;
+  border:none;
+  background:transparent;
+  color:#aeb8cb;
+  border-radius:14px;
+  text-align:right;
+  transition:.2s;
 }
 
-.nav button.active,
-.nav button:hover{
-    background:#131c26;
-    color:white;
-}
-
+.nav button:hover,
 .nav button.active{
-    color:var(--green);
+  color:#fff;
+  background:linear-gradient(90deg,rgba(108,99,255,.2),rgba(108,99,255,.06));
 }
 
 .main{
-    width:calc(100% - 250px);
-    margin-right:250px;
-    padding:28px;
-    max-width:1500px;
+  margin-right:255px;
+  padding:30px;
+  max-width:1600px;
 }
 
 .mobile-header{
-    display:none;
+  display:none;
 }
 
-/* ---------- Dashboard ---------- */
+/* =========================
+   TOP
+========================= */
 
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
 }
 
-.header h1{
-    font-size:27px;
+.topbar h2{
+  font-size:28px;
 }
 
-.header p{
-    color:var(--muted);
-    font-size:14px;
+.date{
+  color:var(--muted);
+  font-size:14px;
 }
 
-.date-badge{
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:10px 15px;
-    border-radius:14px;
-    color:#b9c3ce;
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+  display:grid;
+  gap:18px;
 }
+
+.grid-4{
+  grid-template-columns:repeat(4,1fr);
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,1fr);
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,1fr);
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(17,26,45,.95),rgba(13,20,35,.95));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.card-title h3{
+  font-size:18px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+/* =========================
+   CALORIES
+========================= */
 
 .calorie-card{
-    background:
-      radial-gradient(circle at 100% 0%,rgba(53,229,140,.14),transparent 40%),
-      var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px;
-    display:grid;
-    grid-template-columns:1fr 250px;
-    gap:25px;
-    margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  min-height:330px;
 }
 
-.calorie-number{
-    font-size:45px;
-    font-weight:900;
-    margin:12px 0 4px;
+.ring{
+  width:205px;
+  height:205px;
+  border-radius:50%;
+  background:conic-gradient(var(--primary) 0deg,#222d43 0deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  margin-bottom:18px;
 }
 
-.calorie-number span{
-    font-size:16px;
-    color:var(--muted);
-    font-weight:500;
-}
-
-.progress{
-    width:100%;
-    height:10px;
-    background:#202a35;
-    border-radius:20px;
-    overflow:hidden;
-    margin:14px 0 8px;
-}
-
-.progress-fill{
-    height:100%;
-    background:linear-gradient(90deg,var(--green),#64f7ae);
-    border-radius:20px;
-    transition:.4s;
-}
-
-.small-info{
-    display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font-size:13px;
-}
-
-.calorie-ring{
-    width:190px;
-    height:190px;
-    margin:auto;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    background:conic-gradient(var(--green) 0deg,#1d2732 0deg);
-}
-
-.calorie-ring::before{
-    content:"";
-    position:absolute;
-    width:145px;
-    height:145px;
-    background:var(--card);
-    border-radius:50%;
+.ring:after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  background:#10182a;
+  border-radius:50%;
 }
 
 .ring-content{
-    position:relative;
-    text-align:center;
+  position:relative;
+  z-index:2;
+  text-align:center;
 }
 
 .ring-content strong{
-    font-size:30px;
-    display:block;
+  display:block;
+  font-size:34px;
 }
 
 .ring-content span{
-    color:var(--muted);
-    font-size:12px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-/* ---------- Cards ---------- */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-bottom:20px;
+.stat{
+  padding:20px;
+  min-height:150px;
 }
 
-.stat-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:19px;
-    padding:20px;
+.stat .icon{
+  font-size:25px;
+  margin-bottom:10px;
 }
 
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.stat h4{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:7px;
 }
 
-.stat-name{
-    color:var(--muted);
-    font-size:13px;
+.stat strong{
+  font-size:27px;
 }
 
-.stat-icon{
-    width:36px;
-    height:36px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:11px;
-    background:#17212c;
+.progress{
+  height:8px;
+  background:#202b40;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:13px;
 }
 
-.stat-value{
-    font-size:24px;
-    font-weight:800;
-    margin-top:10px;
+.progress span{
+  display:block;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,var(--primary),var(--green));
 }
 
-.macro-bar{
-    height:6px;
-    background:#1d2630;
-    border-radius:10px;
-    margin-top:12px;
-    overflow:hidden;
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.macro-fill{
-    height:100%;
-    border-radius:10px;
+.action{
+  border:1px solid var(--border);
+  background:#121b2d;
+  padding:22px;
+  border-radius:20px;
+  text-align:center;
+  transition:.2s;
 }
 
-.blue{background:var(--blue)}
-.orange{background:var(--orange)}
-.purple{background:var(--purple)}
-
-.two-col{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:20px;
+.action:hover{
+  transform:translateY(-3px);
+  border-color:rgba(108,99,255,.5);
 }
 
-.section-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:23px;
-    margin-bottom:20px;
+.action .big{
+  font-size:35px;
+  margin-bottom:10px;
 }
 
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+.action strong{
+  display:block;
+  margin-bottom:5px;
 }
 
-.section-head h3{
-    font-size:18px;
+.action small{
+  color:var(--muted);
 }
 
-.section-head button{
-    border:1px solid var(--border);
-    color:var(--green);
-    background:#0b1118;
-    border-radius:11px;
-    padding:8px 12px;
+/* =========================
+   FOOD SEARCH
+========================= */
+
+.food-search{
+  position:relative;
 }
 
-/* ---------- Food ---------- */
+.food-search-row{
+  display:grid;
+  grid-template-columns:1fr 130px 130px;
+  gap:10px;
+}
+
+.suggestions{
+  position:absolute;
+  top:65px;
+  right:0;
+  left:0;
+  z-index:20;
+  background:#10182a;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.suggestion{
+  padding:13px 15px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.suggestion:hover{
+  background:#18233a;
+}
+
+.suggestion small{
+  color:var(--muted);
+}
+
+.selected-food{
+  margin-top:15px;
+  padding:15px;
+  border-radius:16px;
+  background:#0c1424;
+  border:1px solid var(--border);
+}
+
+.food-result{
+  display:grid;
+  grid-template-columns:1fr repeat(4,auto);
+  align-items:center;
+  gap:15px;
+}
+
+.food-name strong{
+  display:block;
+}
+
+.food-name small{
+  color:var(--muted);
+}
+
+.macro-mini{
+  text-align:center;
+}
+
+.macro-mini strong{
+  display:block;
+}
+
+.macro-mini small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================
+   FOOD LIST
+========================= */
 
 .food-item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 0;
-    border-bottom:1px solid #19222c;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
 .food-item:last-child{
-    border-bottom:0;
+  border-bottom:0;
 }
 
 .food-info{
-    display:flex;
-    align-items:center;
-    gap:12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .food-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#18222d;
-    font-size:20px;
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  background:#1a263d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
 }
 
 .food-info strong{
-    display:block;
-    font-size:14px;
+  display:block;
 }
 
 .food-info small{
-    color:var(--muted);
+  color:var(--muted);
 }
 
-.food-cal{
-    font-weight:700;
-    color:var(--green);
+.food-calories{
+  text-align:left;
 }
 
-/* ---------- Workout ---------- */
+.food-calories strong{
+  display:block;
+}
+
+.food-calories small{
+  color:var(--muted);
+}
+
+.delete-btn{
+  border:none;
+  background:#2a1720;
+  color:#ff7384;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+}
+
+/* =========================
+   CAMERA
+========================= */
+
+.camera-box{
+  text-align:center;
+  min-height:350px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.camera-preview{
+  width:100%;
+  max-height:400px;
+  object-fit:cover;
+  border-radius:20px;
+  margin:15px 0;
+  display:none;
+}
+
+.camera-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.camera-note{
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:15px;
+  font-size:13px;
+}
+
+/* =========================
+   WORKOUT
+========================= */
+
+.workout-card{
+  position:relative;
+  overflow:hidden;
+}
 
 .exercise{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:14px;
-    background:#0a1017;
-    border:1px solid #1b2632;
-    border-radius:15px;
-    margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:17px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.exercise-number{
-    width:35px;
-    height:35px;
-    background:#17232e;
-    border-radius:10px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:var(--green);
-    font-weight:800;
+.exercise:last-child{
+  border-bottom:0;
 }
 
-.exercise-main{
-    flex:1;
+.exercise-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.exercise-main strong{
-    display:block;
+.exercise-icon{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:15px;
+  background:#19243a;
+  font-size:22px;
 }
 
-.exercise-main small{
-    color:var(--muted);
+.badge{
+  padding:7px 11px;
+  border-radius:20px;
+  background:rgba(108,99,255,.15);
+  color:#a69fff;
+  font-size:12px;
 }
-
-.exercise-count{
-    font-weight:800;
-    color:#dce3eb;
-}
-
-/* ---------- Pages ---------- */
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
-
-/* ---------- Add Food Modal ---------- */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(7px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:100;
-    padding:18px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:520px;
-    max-height:90vh;
-    overflow:auto;
-    background:#0d141c;
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:25px;
-}
-
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close{
-    border:0;
-    background:#18222d;
-    color:white;
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    font-size:20px;
-}
-
-.modal-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.modal-grid input{
-    height:50px;
-    background:#080d13;
-    border:1px solid var(--border);
-    border-radius:13px;
-    color:white;
-    padding:0 12px;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-/* ---------- Camera ---------- */
-
-.upload-zone{
-    border:2px dashed #2a3948;
-    border-radius:20px;
-    padding:40px 20px;
-    text-align:center;
-    color:var(--muted);
-    cursor:pointer;
-}
-
-.upload-zone:hover{
-    border-color:var(--green);
-}
-
-.preview{
-    width:100%;
-    max-height:250px;
-    object-fit:cover;
-    border-radius:17px;
-    margin-top:15px;
-    display:none;
-}
-
-/* ---------- Workout Planner ---------- */
-
-.plan-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:8px;
-}
-
-.day{
-    border:1px solid var(--border);
-    border-radius:13px;
-    padding:10px 5px;
-    text-align:center;
-    cursor:pointer;
-    color:var(--muted);
-}
-
-.day.selected{
-    background:rgba(53,229,140,.1);
-    border-color:var(--green);
-    color:var(--green);
-}
-
-.day small{
-    display:block;
-    font-size:10px;
-    margin-top:4px;
-}
-
-.range{
-    width:100%;
-    accent-color:var(--green);
-}
-
-/* ---------- Timer ---------- */
 
 .timer{
-    text-align:center;
-    padding:25px;
-    background:#090f15;
-    border-radius:18px;
-    margin-top:15px;
+  text-align:center;
+  padding:25px;
 }
 
 .timer-number{
-    font-size:52px;
-    font-weight:900;
-    color:var(--green);
+  font-size:65px;
+  font-weight:900;
+  margin:15px;
 }
 
-/* ---------- Toast ---------- */
+/* =========================
+   PROGRESS
+========================= */
+
+.big-number{
+  font-size:42px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  width:min(550px,100%);
+  background:#10182a;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:25px;
+  max-height:90vh;
+  overflow:auto;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.close{
+  border:none;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#202b40;
+  color:white;
+}
+
+/* =========================
+   TOAST
+========================= */
 
 .toast{
-    position:fixed;
-    left:25px;
-    bottom:25px;
-    background:#15202b;
-    border:1px solid #2a3948;
-    color:white;
-    padding:14px 18px;
-    border-radius:14px;
-    transform:translateY(120px);
-    opacity:0;
-    transition:.3s;
-    z-index:500;
+  position:fixed;
+  bottom:25px;
+  left:25px;
+  z-index:1000;
+  padding:15px 20px;
+  border-radius:15px;
+  background:#17233a;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
 }
 
 .toast.show{
-    transform:translateY(0);
-    opacity:1;
+  transform:translateY(0);
+  opacity:1;
 }
 
-/* ---------- Responsive ---------- */
+/* =========================
+   EMPTY
+========================= */
 
-@media(max-width:900px){
-    .sidebar{
-        display:none;
-    }
-
-    .main{
-        width:100%;
-        margin-right:0;
-        padding:18px;
-        padding-bottom:85px;
-    }
-
-    .mobile-header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-bottom:20px;
-    }
-
-    .mobile-nav{
-        position:fixed;
-        bottom:0;
-        right:0;
-        left:0;
-        height:68px;
-        background:#0b1118;
-        border-top:1px solid var(--border);
-        z-index:50;
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-    }
-
-    .mobile-nav button{
-        border:0;
-        background:none;
-        color:#758191;
-        font-size:11px;
-    }
-
-    .mobile-nav button.active{
-        color:var(--green);
-    }
-
-    .calorie-card{
-        grid-template-columns:1fr;
-    }
-
-    .two-col{
-        grid-template-columns:1fr;
-    }
+.empty{
+  padding:35px 15px;
+  text-align:center;
+  color:var(--muted);
 }
 
-@media(max-width:650px){
-    .grid,
-    .stats{
-        grid-template-columns:1fr;
-    }
+/* =========================
+   MOBILE
+========================= */
 
-    .goal-options{
-        grid-template-columns:1fr;
-    }
+@media(max-width:1000px){
+  .grid-4{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .plan-grid{
-        grid-template-columns:repeat(4,1fr);
-    }
+  .grid-3{
+    grid-template-columns:1fr 1fr;
+  }
+}
 
-    .form-card{
-        padding:18px;
-    }
+@media(max-width:750px){
 
-    .calorie-card{
-        padding:20px;
-    }
+  .sidebar{
+    display:none;
+  }
 
-    .header{
-        align-items:flex-start;
-    }
+  .main{
+    margin-right:0;
+    padding:18px 14px 90px;
+  }
 
-    .date-badge{
-        display:none;
-    }
+  .mobile-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+  }
+
+  .mobile-header button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:14px;
+    background:#172239;
+    color:white;
+    font-size:20px;
+  }
+
+  .topbar h2{
+    font-size:23px;
+  }
+
+  .grid-4,
+  .grid-3,
+  .grid-2{
+    grid-template-columns:1fr;
+  }
+
+  .quick-actions{
+    grid-template-columns:1fr;
+  }
+
+  .food-search-row{
+    grid-template-columns:1fr;
+  }
+
+  .food-result{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .ring{
+    width:180px;
+    height:180px;
+  }
+
+  .welcome-box h1{
+    font-size:32px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+    height:72px;
+    background:rgba(10,15,28,.97);
+    border-top:1px solid var(--border);
+    display:flex;
+    z-index:200;
+  }
+
+  .bottom-nav button{
+    flex:1;
+    border:none;
+    background:none;
+    color:#8490a8;
+    font-size:11px;
+  }
+
+  .bottom-nav button.active{
+    color:white;
+  }
+
+  .bottom-nav span{
+    display:block;
+    font-size:20px;
+    margin-bottom:4px;
+  }
+}
+
+@media(min-width:751px){
+  .bottom-nav{
+    display:none;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= WELCOME ================= -->
+<!-- =========================
+     WELCOME
+========================= -->
 
-<section id="welcome">
-    <div class="welcome-box">
-        <div class="logo">💪</div>
+<section id="welcome" class="screen">
+  <div class="welcome-box">
+    <div class="logo">💪</div>
 
-        <h1>
-            أهلاً بك في
-            <span class="gradient">FitTrack</span>
-        </h1>
+    <h1>FitTrack Pro</h1>
 
-        <p>
-            تابع تغذيتك، سعراتك وتمارينك في مكان واحد.
-        </p>
+    <p>
+      منصتك الشخصية للتغذية والتمارين.
+      احسب احتياجك اليومي، أضف طعامك، وتابع تقدمك.
+    </p>
 
-        <input
-            id="userName"
-            class="name-input"
-            placeholder="اكتب اسمك..."
-            maxlength="30"
-        >
+    <div class="form-card">
+      <div class="input-group">
+        <label>ما اسمك؟</label>
+        <input id="userName" type="text" placeholder="اكتب اسمك">
+      </div>
 
-        <button class="primary-btn" onclick="goToSetup()">
-            التالي ←
-        </button>
+      <button class="btn full" onclick="goToSetup()">
+        ابدأ الآن →
+      </button>
     </div>
+  </div>
 </section>
 
+<!-- =========================
+     SETUP
+========================= -->
 
-<!-- ================= SETUP ================= -->
+<section id="setup" class="screen hidden">
+  <div class="welcome-box">
 
-<section id="setup" class="hidden">
-    <div class="setup-container">
+    <div class="logo">⚙️</div>
 
-        <div class="top-title">
-            <h2>لنجهز خطتك 🎯</h2>
-            <p>أدخل معلوماتك للحصول على تقدير يومي مناسب.</p>
+    <h1>بياناتك</h1>
+
+    <p>
+      هذه المعلومات تساعدنا على تقدير احتياجك اليومي.
+    </p>
+
+    <div class="form-card">
+
+      <div class="grid grid-2">
+
+        <div class="input-group">
+          <label>العمر</label>
+          <input id="age" type="number" min="13" max="100" placeholder="مثال: 20">
         </div>
 
-        <div class="form-card">
-
-            <div class="grid">
-
-                <div class="field">
-                    <label>العمر</label>
-                    <input id="age" type="number" min="13" max="100" placeholder="مثلاً 18">
-                </div>
-
-                <div class="field">
-                    <label>الجنس</label>
-                    <select id="gender">
-                        <option value="male">ذكر</option>
-                        <option value="female">أنثى</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>الوزن (كغ)</label>
-                    <input id="weight" type="number" min="25" max="300" placeholder="مثلاً 70">
-                </div>
-
-                <div class="field">
-                    <label>الطول (سم)</label>
-                    <input id="height" type="number" min="100" max="230" placeholder="مثلاً 175">
-                </div>
-
-                <div class="field" style="grid-column:1/-1">
-                    <label>مستوى نشاطك اليومي</label>
-                    <select id="activity">
-                        <option value="1.2">قليل جداً — لا أتمرن تقريباً</option>
-                        <option value="1.375">خفيف — 1 إلى 3 أيام</option>
-                        <option value="1.55">متوسط — 3 إلى 5 أيام</option>
-                        <option value="1.725">مرتفع — 6 إلى 7 أيام</option>
-                        <option value="1.9">مرتفع جداً — نشاط بدني قوي</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="goal-box">
-                <label style="display:block;margin-bottom:10px;color:#c8d0da">
-                    هدفك
-                </label>
-
-                <div class="goal-options">
-
-                    <div class="goal active" data-goal="maintain"
-                         onclick="selectGoal(this)">
-                        ⚖️<br>
-                        المحافظة
-                    </div>
-
-                    <div class="goal" data-goal="lose"
-                         onclick="selectGoal(this)">
-                        🔥<br>
-                        خسارة الدهون
-                    </div>
-
-                    <div class="goal" data-goal="gain"
-                         onclick="selectGoal(this)">
-                        💪<br>
-                        زيادة الوزن
-                    </div>
-
-                </div>
-            </div>
-
-            <button class="primary-btn" onclick="createPlan()">
-                إنشاء خطتي 🚀
-            </button>
-
+        <div class="input-group">
+          <label>الجنس</label>
+          <select id="gender">
+            <option value="male">ذكر</option>
+            <option value="female">أنثى</option>
+          </select>
         </div>
+
+        <div class="input-group">
+          <label>الوزن — كغ</label>
+          <input id="weight" type="number" min="30" max="300" placeholder="70">
+        </div>
+
+        <div class="input-group">
+          <label>الطول — سم</label>
+          <input id="height" type="number" min="120" max="230" placeholder="175">
+        </div>
+
+      </div>
+
+      <div class="input-group">
+        <label>مستوى النشاط</label>
+        <select id="activity">
+          <option value="1.2">قليل الحركة</option>
+          <option value="1.375">نشاط خفيف</option>
+          <option value="1.55">نشاط متوسط</option>
+          <option value="1.725">نشاط مرتفع</option>
+          <option value="1.9">نشاط مرتفع جدًا</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>هدفك</label>
+        <select id="goal">
+          <option value="maintain">الحفاظ على الوزن</option>
+          <option value="lose">خسارة الدهون</option>
+          <option value="gain">زيادة الوزن/العضلات</option>
+        </select>
+      </div>
+
+      <button class="btn full" onclick="createPlan()">
+        إنشاء خطتي 🚀
+      </button>
+
     </div>
+  </div>
 </section>
 
+<!-- =========================
+     APP
+========================= -->
 
-<!-- ================= APP ================= -->
+<section id="app" class="app hidden">
 
-<section id="app" class="hidden">
+  <!-- SIDEBAR -->
 
-    <aside class="sidebar">
+  <aside class="sidebar">
 
-        <div class="brand">
-            <div class="brand-icon">💪</div>
-            FitTrack
-        </div>
+    <div class="brand">
+      <div class="brand-icon">💪</div>
+      <div>
+        <strong>FitTrack Pro</strong>
+        <small class="muted">خطتك الشخصية</small>
+      </div>
+    </div>
 
-        <nav class="nav">
-            <button class="active" onclick="showPage('dashboard',this)">🏠 الرئيسية</button>
-            <button onclick="showPage('nutrition',this)">🍽️ التغذية</button>
-            <button onclick="showPage('workout',this)">🏋️ التمارين</button>
-            <button onclick="showPage('camera',this)">📷 تحليل وجبة</button>
-            <button onclick="showPage('progress',this)">📊 التقدم</button>
-        </nav>
+    <nav class="nav">
 
-    </aside>
+      <button class="active" data-page="dashboard" onclick="showPage('dashboard')">
+        🏠 الرئيسية
+      </button>
 
+      <button data-page="nutrition" onclick="showPage('nutrition')">
+        🍽️ التغذية
+      </button>
 
-    <main class="main">
+      <button data-page="camera" onclick="showPage('camera')">
+        📷 صوّر وجبتك
+      </button>
 
-        <div class="mobile-header">
-            <strong>💪 FitTrack</strong>
-            <span id="mobileName"></span>
-        </div>
+      <button data-page="workout" onclick="showPage('workout')">
+        🏋️ التمارين
+      </button>
 
-
-        <!-- DASHBOARD -->
-
-        <div id="dashboard" class="page active">
-
-            <div class="header">
-                <div>
-                    <h1 id="hello"></h1>
-                    <p>إليك ملخص يومك.</p>
-                </div>
-
-                <div class="date-badge" id="date"></div>
-            </div>
-
-
-            <div class="calorie-card">
-
-                <div>
-                    <span style="color:var(--muted)">السعرات اليومية</span>
-
-                    <div class="calorie-number">
-                        <span id="remainingCalories">0</span>
-                        <span>kcal متبقية</span>
-                    </div>
-
-                    <div class="progress">
-                        <div id="calorieProgress" class="progress-fill"></div>
-                    </div>
-
-                    <div class="small-info">
-                        <span>المستهلك <b id="eatenCalories">0</b></span>
-                        <span>الهدف <b id="targetCalories">0</b></span>
-                    </div>
-                </div>
-
-                <div class="calorie-ring" id="ring">
-                    <div class="ring-content">
-                        <strong id="ringPercent">0%</strong>
-                        <span>من هدفك</span>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="stats">
-
-                <div class="stat-card">
-                    <div class="stat-top">
-                        <span class="stat-name">البروتين</span>
-                        <span class="stat-icon">🥩</span>
-                    </div>
-                    <div class="stat-value">
-                        <span id="proteinCurrent">0</span>
-                        <small>/ <span id="proteinTarget">0</span>g</small>
-                    </div>
-                    <div class="macro-bar">
-                        <div id="proteinBar" class="macro-fill blue"></div>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-top">
-                        <span class="stat-name">الكربوهيدرات</span>
-                        <span class="stat-icon">🍚</span>
-                    </div>
-                    <div class="stat-value">
-                        <span id="carbCurrent">0</span>
-                        <small>/ <span id="carbTarget">0</span>g</small>
-                    </div>
-                    <div class="macro-bar">
-                        <div id="carbBar" class="macro-fill orange"></div>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-top">
-                        <span class="stat-name">الدهون</span>
-                        <span class="stat-icon">🥑</span>
-                    </div>
-                    <div class="stat-value">
-                        <span id="fatCurrent">0</span>
-                        <small>/ <span id="fatTarget">0</span>g</small>
-                    </div>
-                    <div class="macro-bar">
-                        <div id="fatBar" class="macro-fill purple"></div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="two-col">
-
-                <div class="section-card">
-
-                    <div class="section-head">
-                        <h3>🍽️ أكل اليوم</h3>
-                        <button onclick="openFoodModal()">+ إضافة</button>
-                    </div>
-
-                    <div id="foodList"></div>
-
-                    <div id="emptyFood"
-                         style="text-align:center;color:var(--muted);padding:25px">
-                        لم تضف أي وجبة اليوم.
-                    </div>
-
-                </div>
-
-
-                <div class="section-card">
-
-                    <div class="section-head">
-                        <h3>🏋️ تمرين اليوم</h3>
-                        <button onclick="showPage('workout')">عرض</button>
-                    </div>
-
-                    <div id="todayWorkout"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- NUTRITION -->
-
-        <div id="nutrition" class="page">
-
-            <div class="header">
-                <div>
-                    <h1>🍽️ التغذية</h1>
-                    <p>سجل كل ما تأكله خلال اليوم.</p>
-                </div>
-            </div>
-
-            <div class="section-card">
-
-                <div class="section-head">
-                    <h3>إضافة طعام</h3>
-                    <button onclick="openFoodModal()">+ إضافة وجبة</button>
-                </div>
-
-                <div id="nutritionFoodList"></div>
-
-            </div>
-
-            <div class="section-card">
-
-                <h3 style="margin-bottom:20px">ملخص اليوم</h3>
-
-                <div class="stats">
-
-                    <div class="stat-card">
-                        🔥 السعرات
-                        <div class="stat-value">
-                            <span id="nutritionCalories">0</span> kcal
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        🥩 البروتين
-                        <div class="stat-value">
-                            <span id="nutritionProtein">0</span> g
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        🍚 الكربوهيدرات
-                        <div class="stat-value">
-                            <span id="nutritionCarbs">0</span> g
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- WORKOUT -->
-
-        <div id="workout" class="page">
-
-            <div class="header">
-                <div>
-                    <h1>🏋️ خطة التمارين</h1>
-                    <p>برنامج Calisthenics مناسب للمبتدئين.</p>
-                </div>
-            </div>
-
-
-            <div class="section-card">
-
-                <div class="section-head">
-                    <h3>⚙️ إعداد الخطة</h3>
-                </div>
-
-                <label style="color:#aaa">
-                    عدد أيام التدريب:
-                    <strong id="daysValue">3</strong>
-                </label>
-
-                <input
-                    id="trainingDays"
-                    class="range"
-                    type="range"
-                    min="1"
-                    max="6"
-                    value="3"
-                    oninput="updateDays(this.value)"
-                >
-
-                <br><br>
-
-                <label style="color:#aaa">
-                    مدة التمرين:
-                    <strong id="durationValue">30</strong> دقيقة
-                </label>
-
-                <input
-                    id="duration"
-                    class="range"
-                    type="range"
-                    min="15"
-                    max="90"
-                    step="5"
-                    value="30"
-                    oninput="document.getElementById('durationValue').textContent=this.value"
-                >
-
-                <br><br>
-
-                <label style="color:#aaa;display:block;margin-bottom:10px">
-                    اختر أيام الراحة:
-                </label>
-
-                <div class="plan-grid">
-
-                    <div class="day selected" onclick="toggleRest(this)">السبت<small>راحة</small></div>
-                    <div class="day" onclick="toggleRest(this)">الأحد<small>تدريب</small></div>
-                    <div class="day selected" onclick="toggleRest(this)">الإثنين<small>راحة</small></div>
-                    <div class="day" onclick="toggleRest(this)">الثلاثاء<small>تدريب</small></div>
-                    <div class="day selected" onclick="toggleRest(this)">الأربعاء<small>راحة</small></div>
-                    <div class="day" onclick="toggleRest(this)">الخميس<small>تدريب</small></div>
-                    <div class="day selected" onclick="toggleRest(this)">الجمعة<small>راحة</small></div>
-
-                </div>
-
-                <button class="primary-btn" onclick="generateWorkout()">
-                    تحديث البرنامج
-                </button>
-
-            </div>
-
-
-            <div class="section-card">
-
-                <div class="section-head">
-                    <h3>🔥 تمرين اليوم</h3>
-                    <span id="workoutStatus" style="color:var(--green)">جاهز</span>
-                </div>
-
-                <div id="workoutExercises"></div>
-
-                <div class="timer">
-                    <div style="color:var(--muted)">مؤقت الراحة</div>
-                    <div class="timer-number" id="timer">01:00</div>
-                    <button class="primary-btn"
-                            style="max-width:250px"
-                            onclick="startTimer()">
-                        ابدأ الراحة
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="section-card">
-
-                <h3 style="margin-bottom:15px">💡 الراحة والاستشفاء</h3>
-
-                <p style="color:var(--muted);line-height:2">
-                    للمبتدئ، ابدأ تدريجياً ولا تمرّن نفس العضلات بقوة في أيام متتالية.
-                    خذ عادةً حوالي 60–90 ثانية بين الجولات في التمارين البسيطة،
-                    واجعل هناك يوم راحة أو استشفاء قبل إعادة تدريب المجموعة العضلية
-                    بقوة. إذا شعرت بألم حاد أو غير طبيعي، أوقف التمرين.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- CAMERA -->
-
-        <div id="camera" class="page">
-
-            <div class="header">
-                <div>
-                    <h1>📷 تحليل وجبتك</h1>
-                    <p>صوّر وجبتك للحصول على تقدير غذائي.</p>
-                </div>
-            </div>
-
-            <div class="section-card">
-
-                <label class="upload-zone" for="foodImage">
-                    <div style="font-size:45px;margin-bottom:10px">📸</div>
-                    <strong style="color:white">
-                        اضغط هنا لاختيار صورة الوجبة
-                    </strong>
-                    <br>
-                    <small>
-                        يمكنك استخدام كاميرا الهاتف أو اختيار صورة.
-                    </small>
-                </label>
-
-                <input
-                    id="foodImage"
-                    type="file"
-                    accept="image/*"
-                    capture="environment"
-                    style="display:none"
-                    onchange="previewFood(event)"
-                >
-
-                <img id="preview" class="preview">
-
-                <div id="aiResult" class="hidden" style="margin-top:20px">
-
-                    <div class="section-card" style="margin:0">
-
-                        <h3 style="margin-bottom:15px">
-                            🔎 التقدير
-                        </h3>
-
-                        <div class="stats">
-
-                            <div class="stat-card">
-                                🔥
-                                <div class="stat-value">
-                                    <span id="aiCalories">0</span>
-                                </div>
-                                kcal
-                            </div>
-
-                            <div class="stat-card">
-                                🥩
-                                <div class="stat-value">
-                                    <span id="aiProtein">0</span>g
-                                </div>
-                                بروتين
-                            </div>
-
-                            <div class="stat-card">
-                                🍚
-                                <div class="stat-value">
-                                    <span id="aiCarbs">0</span>g
-                                </div>
-                                كربوهيدرات
-                            </div>
-
-                        </div>
-
-                        <p style="color:var(--muted);font-size:13px;line-height:1.8">
-                            هذا تقدير تقريبي. دقة التحليل تعتمد على نوع الطعام
-                            وحجم الحصة والصورة. راجع النتائج قبل إضافتها.
-                        </p>
-
-                        <button class="primary-btn"
-                                onclick="addAIResult()">
-                            إضافة إلى يومي
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PROGRESS -->
-
-        <div id="progress" class="page">
-
-            <div class="header">
-                <div>
-                    <h1>📊 التقدم</h1>
-                    <p>تابع تطورك مع الوقت.</p>
-                </div>
-            </div>
-
-            <div class="stats">
-
-                <div class="stat-card">
-                    ⚖️
-                    <div class="stat-name">وزنك الحالي</div>
-                    <div class="stat-value">
-                        <span id="progressWeight">0</span> kg
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    🔥
-                    <div class="stat-name">هدف السعرات</div>
-                    <div class="stat-value">
-                        <span id="progressCalories">0</span>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    🏋️
-                    <div class="stat-name">أيام التدريب</div>
-                    <div class="stat-value">
-                        <span id="progressDays">3</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="section-card">
-
-                <h3 style="margin-bottom:15px">
-                    📌 بياناتك
-                </h3>
-
-                <div id="profileSummary"
-                     style="line-height:2;color:var(--muted)">
-                </div>
-
-            </div>
-
-            <div class="section-card">
-
-                <h3 style="margin-bottom:15px">
-                    ⚠️ ملاحظة
-                </h3>
-
-                <p style="color:var(--muted);line-height:2">
-                    الأرقام المستخدمة في التطبيق تقديرات وليست بديلاً عن تقييم
-                    طبي أو تغذوي متخصص. خصوصاً للمراهقين، الحوامل، أو الأشخاص
-                    الذين لديهم أمراض أو اضطرابات غذائية، يفضل استشارة مختص.
-                </p>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- MOBILE NAV -->
-
-    <nav class="mobile-nav">
-
-        <button class="active"
-                onclick="showPage('dashboard',this)">
-            🏠<br>الرئيسية
-        </button>
-
-        <button onclick="showPage('nutrition',this)">
-            🍽️<br>الأكل
-        </button>
-
-        <button onclick="showPage('workout',this)">
-            🏋️<br>تمارين
-        </button>
-
-        <button onclick="showPage('progress',this)">
-            📊<br>التقدم
-        </button>
+      <button data-page="progress" onclick="showPage('progress')">
+        📊 التقدم
+      </button>
 
     </nav>
 
-</section>
+  </aside>
 
+  <!-- MAIN -->
 
-<!-- ================= FOOD MODAL ================= -->
+  <main class="main">
 
-<div id="foodModal" class="modal">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-            <h3>🍽️ إضافة وجبة</h3>
-            <button class="close" onclick="closeFoodModal()">×</button>
-        </div>
-
-        <div class="modal-grid">
-
-            <input
-                id="foodName"
-                class="full"
-                placeholder="اسم الطعام — مثلاً: صدر دجاج">
-
-            <input
-                id="foodCalories"
-                type="number"
-                placeholder="السعرات kcal">
-
-            <input
-                id="foodProtein"
-                type="number"
-                placeholder="البروتين g">
-
-            <input
-                id="foodCarbs"
-                type="number"
-                placeholder="الكربوهيدرات g">
-
-            <input
-                id="foodFat"
-                type="number"
-                placeholder="الدهون g">
-
-        </div>
-
-        <button class="primary-btn"
-                onclick="addFood()">
-            إضافة إلى يومي
-        </button>
-
+    <div class="mobile-header">
+      <strong>💪 FitTrack</strong>
+      <button onclick="showPage('camera')">📷</button>
     </div>
 
-</div>
+    <!-- ================= DASHBOARD ================= -->
 
+    <section id="dashboard" class="page">
+
+      <div class="topbar">
+        <div>
+          <h2>مرحبًا <span id="displayName"></span> 👋</h2>
+          <div class="date" id="todayDate"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-4">
+
+        <div class="card calorie-card">
+          <div class="ring" id="calorieRing">
+            <div class="ring-content">
+              <strong id="remainingCalories">0</strong>
+              <span>سعرة متبقية</span>
+            </div>
+          </div>
+
+          <div class="muted">
+            هدفك اليومي:
+            <strong id="targetCalories">0</strong> kcal
+          </div>
+        </div>
+
+        <div class="card stat">
+          <div class="icon">🥩</div>
+          <h4>البروتين</h4>
+          <strong>
+            <span id="proteinEaten">0</span> /
+            <span id="proteinTarget">0</span>g
+          </strong>
+          <div class="progress">
+            <span id="proteinProgress"></span>
+          </div>
+        </div>
+
+        <div class="card stat">
+          <div class="icon">🍚</div>
+          <h4>الكربوهيدرات</h4>
+          <strong>
+            <span id="carbsEaten">0</span> /
+            <span id="carbsTarget">0</span>g
+          </strong>
+          <div class="progress">
+            <span id="carbsProgress"></span>
+          </div>
+        </div>
+
+        <div class="card stat">
+          <div class="icon">🥑</div>
+          <h4>الدهون</h4>
+          <strong>
+            <span id="fatEaten">0</span> /
+            <span id="fatTarget">0</span>g
+          </strong>
+          <div class="progress">
+            <span id="fatProgress"></span>
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+        <div class="card-title">
+          <h3>إضافة طعام سريع ⚡</h3>
+          <span class="muted">اكتب اسم الأكلة فقط</span>
+        </div>
+
+        <div class="food-search">
+          <div class="food-search-row">
+
+            <input
+              id="foodSearch"
+              type="text"
+              placeholder="مثال: أرز، دجاج، بيض، كسكس..."
+              oninput="searchFood(this.value)"
+              autocomplete="off"
+            >
+
+            <input
+              id="foodAmount"
+              type="number"
+              value="100"
+              min="1"
+              placeholder="الجرام"
+            >
+
+            <button class="btn green" onclick="addSelectedFood()">
+              + أضف
+            </button>
+
+          </div>
+
+          <div id="suggestions" class="suggestions hidden"></div>
+
+          <div id="selectedFood" class="selected-food hidden"></div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="quick-actions">
+
+        <button class="action" onclick="showPage('camera')">
+          <div class="big">📸</div>
+          <strong>صوّر وجبتك</strong>
+          <small>التقاط صورة للطعام</small>
+        </button>
+
+        <button class="action" onclick="showPage('nutrition')">
+          <div class="big">🍽️</div>
+          <strong>إضافة وجبة</strong>
+          <small>ابحث عن اسم الطعام</small>
+        </button>
+
+        <button class="action" onclick="showPage('workout')">
+          <div class="big">🏋️</div>
+          <strong>تمرين اليوم</strong>
+          <small>ابدأ تمرينك</small>
+        </button>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+        <div class="card-title">
+          <h3>ما تناولته اليوم 🍽️</h3>
+          <span id="foodCount" class="badge">0 وجبة</span>
+        </div>
+
+        <div id="dashboardFoodList"></div>
+      </div>
+
+    </section>
+
+    <!-- ================= NUTRITION ================= -->
+
+    <section id="nutrition" class="page hidden">
+
+      <div class="topbar">
+        <h2>التغذية 🍽️</h2>
+      </div>
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>ابحث عن الأكلة</h3>
+          <span class="muted">لا تحتاج لكتابة السعرات</span>
+        </div>
+
+        <div class="food-search">
+
+          <div class="food-search-row">
+
+            <input
+              id="foodSearch2"
+              type="text"
+              placeholder="اكتب اسم الأكلة..."
+              oninput="searchFood2(this.value)"
+              autocomplete="off"
+            >
+
+            <input
+              id="foodAmount2"
+              type="number"
+              value="100"
+              min="1"
+              placeholder="الجرام"
+            >
+
+            <button class="btn green" onclick="addSelectedFood2()">
+              إضافة
+            </button>
+
+          </div>
+
+          <div id="suggestions2" class="suggestions hidden"></div>
+
+          <div id="selectedFood2" class="selected-food hidden"></div>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>سجل الطعام اليوم</h3>
+          <span class="muted">يتم الخصم تلقائيًا</span>
+        </div>
+
+        <div id="nutritionFoodList"></div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= CAMERA ================= -->
+
+    <section id="camera" class="page hidden">
+
+      <div class="topbar">
+        <h2>تصوير الوجبة 📷</h2>
+      </div>
+
+      <div class="card camera-box">
+
+        <div style="font-size:65px">📸</div>
+
+        <h2>صوّر وجبتك</h2>
+
+        <p class="camera-note">
+          يمكنك التقاط صورة من كاميرا الهاتف أو اختيار صورة موجودة.
+          <br>
+          بعد التصوير يمكنك ربط هذه الواجهة بخدمة تحليل غذائي بالذكاء الاصطناعي.
+        </p>
+
+        <input
+          id="foodImage"
+          type="file"
+          accept="image/*"
+          capture="environment"
+          hidden
+          onchange="previewFood(event)"
+        >
+
+        <div class="camera-actions">
+
+          <button
+            class="btn"
+            onclick="document.getElementById('foodImage').click()"
+          >
+            📸 فتح الكاميرا
+          </button>
+
+          <button
+            class="btn secondary"
+            onclick="clearPhoto()"
+          >
+            مسح الصورة
+          </button>
+
+        </div>
+
+        <img id="cameraPreview" class="camera-preview">
+
+        <div id="photoResult" class="selected-food hidden"></div>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>كيف يعمل تحليل الصورة؟</h3>
+        </div>
+
+        <div class="muted" style="line-height:2">
+
+          <p>1️⃣ التقط صورة واضحة للوجبة.</p>
+          <p>2️⃣ نظام تحليل الصور يتعرف على الأطعمة الموجودة.</p>
+          <p>3️⃣ يتم تقدير الكمية والسعرات والمغذيات.</p>
+          <p>4️⃣ تراجع النتيجة قبل إضافتها.</p>
+          <p>5️⃣ بعد التأكيد تضاف الوجبة إلى سجل اليوم.</p>
+
+        </div>
+
+        <br>
+
+        <div style="
+          padding:15px;
+          border-radius:15px;
+          background:#19182a;
+          color:#b7b3ff;
+          line-height:1.8;
+        ">
+          ⚠️ ملاحظة: التعرف الحقيقي على الطعام من الصورة يحتاج
+          إلى خدمة ذكاء اصطناعي/واجهة API. هذه الصفحة جاهزة للربط،
+          لكن لا يتم اختلاق نتيجة تحليل حقيقية من الصورة.
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= WORKOUT ================= -->
+
+    <section id="workout" class="page hidden">
+
+      <div class="topbar">
+        <h2>تمرين اليوم 🏋️</h2>
+      </div>
+
+      <div class="grid grid-2">
+
+        <div class="card">
+
+          <div class="card-title">
+            <h3>إعداد التمرين</h3>
+          </div>
+
+          <div class="input-group">
+            <label>أيام التمرين أسبوعيًا</label>
+
+            <select id="trainingDays" onchange="generateWorkout()">
+              <option value="2">يومان</option>
+              <option value="3" selected>3 أيام</option>
+              <option value="4">4 أيام</option>
+              <option value="5">5 أيام</option>
+              <option value="6">6 أيام</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>مدة التمرين</label>
+
+            <select id="trainingDuration" onchange="generateWorkout()">
+              <option value="15">15 دقيقة</option>
+              <option value="20">20 دقيقة</option>
+              <option value="30" selected>30 دقيقة</option>
+              <option value="45">45 دقيقة</option>
+              <option value="60">60 دقيقة</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>أيام الراحة</label>
+
+            <select id="restDays" onchange="generateWorkout()">
+              <option value="1">يوم واحد</option>
+              <option value="2" selected>يومان</option>
+              <option value="3">3 أيام</option>
+            </select>
+          </div>
+
+          <button class="btn full" onclick="generateWorkout()">
+            تحديث البرنامج
+          </button>
+
+        </div>
+
+        <div class="card timer">
+
+          <div class="muted">مؤقت التمرين</div>
+
+          <div id="timerNumber" class="timer-number">
+            00:30
+          </div>
+
+          <div style="display:flex;gap:10px;justify-content:center">
+
+            <button class="btn green" onclick="startTimer()">
+              ▶ ابدأ
+            </button>
+
+            <button class="btn secondary" onclick="resetTimer()">
+              ↻ إعادة
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="card workout-card">
+
+        <div class="card-title">
+
+          <div>
+            <h3>برنامجك اليوم</h3>
+            <span class="muted" id="workoutDescription"></span>
+          </div>
+
+          <span class="badge">Calisthenics</span>
+
+        </div>
+
+        <div id="exerciseList"></div>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+
+        <h3>نصائح الاستشفاء 🛌</h3>
+
+        <div class="muted" style="line-height:2;margin-top:15px">
+
+          <p>💧 اشرب كمية مناسبة من الماء.</p>
+          <p>😴 حاول الحصول على نوم كافٍ.</p>
+          <p>🍗 احرص على تناول كمية مناسبة من البروتين.</p>
+          <p>🧘 إذا كنت مبتدئًا، لا تتمرن بأقصى شدة كل يوم.</p>
+          <p>⚠️ توقف إذا شعرت بألم حاد أو غير طبيعي.</p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section id="progress" class="page hidden">
+
+      <div class="topbar">
+        <h2>تقدمك 📊</h2>
+      </div>
+
+      <div class="grid grid-3">
+
+        <div class="card">
+          <div class="muted">الوزن الحالي</div>
+          <div class="big-number">
+            <span id="progressWeight">0</span>
+          </div>
+          <span class="muted">كغ</span>
+        </div>
+
+        <div class="card">
+          <div class="muted">السعرات المستهلكة اليوم</div>
+          <div class="big-number">
+            <span id="progressCalories">0</span>
+          </div>
+          <span class="muted">kcal</span>
+        </div>
+
+        <div class="card">
+          <div class="muted">عدد الأطعمة اليوم</div>
+          <div class="big-number">
+            <span id="progressFoods">0</span>
+          </div>
+          <span class="muted">وجبة/عنصر</span>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="card">
+
+        <div class="card-title">
+          <h3>ملخص خطتك</h3>
+        </div>
+
+        <div class="muted" style="line-height:2.1">
+
+          <p>
+            السعرات المستهدفة:
+            <strong id="summaryCalories">0</strong> kcal
+          </p>
+
+          <p>
+            البروتين:
+            <strong id="summaryProtein">0</strong> g
+          </p>
+
+          <p>
+            الكربوهيدرات:
+            <strong id="summaryCarbs">0</strong> g
+          </p>
+
+          <p>
+            الدهون:
+            <strong id="summaryFat">0</strong> g
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MOBILE NAV -->
+
+  <nav class="bottom-nav">
+
+    <button class="active" data-page="dashboard" onclick="showPage('dashboard')">
+      <span>🏠</span>
+      الرئيسية
+    </button>
+
+    <button data-page="nutrition" onclick="showPage('nutrition')">
+      <span>🍽️</span>
+      الطعام
+    </button>
+
+    <button data-page="camera" onclick="showPage('camera')">
+      <span>📷</span>
+      تصوير
+    </button>
+
+    <button data-page="workout" onclick="showPage('workout')">
+      <span>🏋️</span>
+      تمرين
+    </button>
+
+    <button data-page="progress" onclick="showPage('progress')">
+      <span>📊</span>
+      تقدم
+    </button>
+
+  </nav>
+
+</section>
+
+<!-- TOAST -->
 
 <div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =====================================================
-   DATA
-===================================================== */
+/* =========================================================
+   FOOD DATABASE
+   القيم لكل 100 غرام
+========================================================= */
 
-let user = {
-    name:"",
-    age:0,
-    gender:"male",
-    weight:0,
-    height:0,
-    activity:1.2,
-    goal:"maintain",
-    calories:0,
-    protein:0,
-    carbs:0,
-    fat:0
-};
+const foods = [
 
-let foods = [];
+  {name:"صدر دجاج مشوي",aliases:["دجاج مشوي","صدر دجاج","دجاج"],cal:165,p:31,c:0,f:3.6,icon:"🍗"},
+  {name:"فخذ دجاج",aliases:["فخذ دجاج"],cal:209,p:26,c:0,f:11,icon:"🍗"},
+  {name:"لحم بقري",aliases:["لحم","لحم أحمر"],cal:250,p:26,c:0,f:16,icon:"🥩"},
+  {name:"لحم مفروم",aliases:["كفتة","لحم مفروم"],cal:270,p:25,c:0,f:18,icon:"🥩"},
+  {name:"سمك مشوي",aliases:["سمك","سمك مشوي"],cal:140,p:26,c:0,f:4,icon:"🐟"},
+  {name:"تونة",aliases:["تونة مصفاة","علبة تونة"],cal:132,p:29,c:0,f:1,icon:"🐟"},
 
-let workoutDays = 3;
+  {name:"بيض",aliases:["بيضة","بيض مسلوق","بيض مقلي"],cal:143,p:13,c:1.1,f:9.5,icon:"🥚"},
+  {name:"بياض البيض",aliases:["بياض"],cal:52,p:11,c:.7,f:.2,icon:"🥚"},
 
-let exercises = [
-    ["Push-ups","3 × 6–12","صدر + ترايسبس"],
-    ["Bodyweight Squats","3 × 10–15","أرجل"],
-    ["Crunches","3 × 10–15","بطن"],
-    ["Glute Bridge","3 × 12–15","مؤخرة + خلفية"],
-    ["Plank","3 × 20–40 ثانية","Core"],
-    ["Lunges","2 × 8 لكل رجل","أرجل"]
+  {name:"أرز أبيض مطبوخ",aliases:["أرز","رز","الرز","أرز مطبوخ"],cal:130,p:2.7,c:28,f:.3,icon:"🍚"},
+  {name:"أرز بني مطبوخ",aliases:["أرز بني"],cal:123,p:2.7,c:25.6,f:1,icon:"🍚"},
+  {name:"مكرونة مطبوخة",aliases:["مكرونة","معكرونة","باستا"],cal:158,p:5.8,c:30.9,f:.9,icon:"🍝"},
+  {name:"بطاطا مسلوقة",aliases:["بطاطس مسلوقة","بطاطا"],cal:87,p:1.9,c:20.1,f:.1,icon:"🥔"},
+  {name:"بطاطا مقلية",aliases:["بطاطس مقلية","فريت"],cal:312,p:3.4,c:41,f:15,icon:"🍟"},
+
+  {name:"خبز أبيض",aliases:["خبز","خبز عادي"],cal:266,p:8.9,c:49,f:3.2,icon:"🍞"},
+  {name:"خبز كامل",aliases:["خبز أسمر","خبز قمح كامل"],cal:247,p:13,c:41,f:4.2,icon:"🍞"},
+
+  {name:"كسكس مطبوخ",aliases:["كسكس","كسكسي"],cal:112,p:3.8,c:23.2,f:.2,icon:"🍲"},
+  {name:"عدس مطبوخ",aliases:["عدس"],cal:116,p:9,c:20,f:.4,icon:"🫘"},
+  {name:"حمص مطبوخ",aliases:["حمص"],cal:164,p:8.9,c:27.4,f:2.6,icon:"🫘"},
+  {name:"فاصوليا مطبوخة",aliases:["فاصوليا"],cal:127,p:8.7,c:22.8,f:.5,icon:"🫘"},
+
+  {name:"حليب كامل الدسم",aliases:["حليب","لبن"],cal:61,p:3.2,c:4.8,f:3.3,icon:"🥛"},
+  {name:"زبادي طبيعي",aliases:["ياغورت","زبادي"],cal:61,p:3.5,c:4.7,f:3.3,icon:"🥛"},
+  {name:"جبن",aliases:["جبنة"],cal:350,p:25,c:2,f:27,icon:"🧀"},
+
+  {name:"موز",aliases:["موزة"],cal:89,p:1.1,c:22.8,f:.3,icon:"🍌"},
+  {name:"تفاح",aliases:["تفاحة"],cal:52,p:.3,c:14,f:.2,icon:"🍎"},
+  {name:"برتقال",aliases:["برتقالة"],cal:47,p:.9,c:11.8,f:.1,icon:"🍊"},
+  {name:"تمر",aliases:["تمور"],cal:282,p:2.5,c:75,f:.4,icon:"🌴"},
+  {name:"فراولة",aliases:["فراولة"],cal:32,p:.7,c:7.7,f:.3,icon:"🍓"},
+
+  {name:"شوفان",aliases:["شوفان جاف","اوتس"],cal:389,p:16.9,c:66.3,f:6.9,icon:"🥣"},
+  {name:"فول سوداني",aliases:["كاوكاو","فول سوداني"],cal:567,p:25.8,c:16.1,f:49.2,icon:"🥜"},
+  {name:"لوز",aliases:["لوز"],cal:579,p:21.2,c:21.6,f:49.9,icon:"🥜"},
+
+  {name:"زيت الزيتون",aliases:["زيت","زيتون"],cal:884,p:0,c:0,f:100,icon:"🫒"},
+  {name:"عسل",aliases:["عسل"],cal:304,p:.3,c:82.4,f:0,icon:"🍯"},
+
+  {name:"بيتزا",aliases:["بيتزا"],cal:266,p:11,c:33,f:10,icon:"🍕"},
+  {name:"برغر",aliases:["هامبرغر","برجر"],cal:295,p:17,c:30,f:13,icon:"🍔"},
+  {name:"شاورما دجاج",aliases:["شاورما","شاورما دجاج"],cal:220,p:18,c:20,f:9,icon:"🌯"},
+
 ];
 
-let timerSeconds = 60;
-let timerInterval;
 
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-function goToSetup(){
-
-    const name =
-        document.getElementById("userName").value.trim();
-
-    if(!name){
-        toast("اكتب اسمك أولاً 👋");
-        return;
-    }
-
-    user.name = name;
-
-    document.getElementById("welcome").classList.add("hidden");
-    document.getElementById("setup").classList.remove("hidden");
-
-}
-
-
-/* =====================================================
-   GOAL
-===================================================== */
-
-function selectGoal(element){
-
-    document
-        .querySelectorAll(".goal")
-        .forEach(x=>x.classList.remove("active"));
-
-    element.classList.add("active");
-
-    user.goal = element.dataset.goal;
-
-}
-
-
-/* =====================================================
-   CREATE PLAN
-===================================================== */
-
-function createPlan(){
-
-    const age =
-        Number(document.getElementById("age").value);
-
-    const weight =
-        Number(document.getElementById("weight").value);
-
-    const height =
-        Number(document.getElementById("height").value);
-
-    const gender =
-        document.getElementById("gender").value;
-
-    const activity =
-        Number(document.getElementById("activity").value);
-
-
-    if(!age || !weight || !height){
-        toast("أكمل جميع المعلومات أولاً.");
-        return;
-    }
-
-    user.age = age;
-    user.weight = weight;
-    user.height = height;
-    user.gender = gender;
-    user.activity = activity;
-
-
-    /* Mifflin-St Jeor */
-
-    let bmr;
-
-    if(gender === "male"){
-        bmr =
-            10 * weight +
-            6.25 * height -
-            5 * age +
-            5;
-    }else{
-        bmr =
-            10 * weight +
-            6.25 * height -
-            5 * age -
-            161;
-    }
-
-
-    let calories = bmr * activity;
-
-
-    if(user.goal === "lose"){
-        calories -= 350;
-    }
-
-    if(user.goal === "gain"){
-        calories += 250;
-    }
-
-
-    user.calories =
-        Math.max(1200,Math.round(calories));
-
-
-    /*
-       Protein:
-       تقريباً 1.6 g/kg
-       ثم توزيع باقي السعرات
-    */
-
-    user.protein =
-        Math.round(weight * 1.6);
-
-
-    const fatCalories =
-        user.calories * 0.27;
-
-    user.fat =
-        Math.round(fatCalories / 9);
-
-
-    const proteinCalories =
-        user.protein * 4;
-
-    const remaining =
-        user.calories -
-        proteinCalories -
-        (user.fat * 9);
-
-    user.carbs =
-        Math.max(
-            50,
-            Math.round(remaining / 4)
-        );
-
-
-    saveData();
-
-    document.getElementById("setup")
-        .classList.add("hidden");
-
-    document.getElementById("app")
-        .classList.remove("hidden");
-
-    updateAll();
-
-    toast("تم إنشاء خطتك بنجاح 🚀");
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function showPage(page,button){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(p=>p.classList.remove("active"));
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-
-    document
-        .querySelectorAll(".nav button, .mobile-nav button")
-        .forEach(b=>b.classList.remove("active"));
-
-
-    if(button){
-        button.classList.add("active");
-    }
-
-}
-
-
-/* =====================================================
-   UPDATE UI
-===================================================== */
-
-function updateAll(){
-
-    document.getElementById("hello").textContent =
-        "مرحباً، " + user.name + " 👋";
-
-    document.getElementById("mobileName").textContent =
-        user.name;
-
-
-    const date =
-        new Date().toLocaleDateString("ar-DZ",{
-            weekday:"long",
-            day:"numeric",
-            month:"long"
-        });
-
-    document.getElementById("date").textContent =
-        date;
-
-
-    document.getElementById("targetCalories").textContent =
-        user.calories;
-
-
-    document.getElementById("proteinTarget").textContent =
-        user.protein;
-
-    document.getElementById("carbTarget").textContent =
-        user.carbs;
-
-    document.getElementById("fatTarget").textContent =
-        user.fat;
-
-
-    updateFood();
-
-    generateWorkout();
-
-    updateProgress();
-
-}
-
-
-/* =====================================================
-   FOOD
-===================================================== */
-
-function openFoodModal(){
-    document.getElementById("foodModal")
-        .classList.add("show");
-}
-
-function closeFoodModal(){
-    document.getElementById("foodModal")
-        .classList.remove("show");
-}
-
-
-function addFood(){
-
-    const name =
-        document.getElementById("foodName").value.trim();
-
-    const calories =
-        Number(document.getElementById("foodCalories").value) || 0;
-
-    const protein =
-        Number(document.getElementById("foodProtein").value) || 0;
-
-    const carbs =
-        Number(document.getElementById("foodCarbs").value) || 0;
-
-    const fat =
-        Number(document.getElementById("foodFat").value) || 0;
-
-
-    if(!name || calories <= 0){
-        toast("أدخل اسم الطعام والسعرات.");
-        return;
-    }
-
-
-    foods.push({
-        name,
-        calories,
-        protein,
-        carbs,
-        fat
-    });
-
-
-    saveData();
-
-    updateFood();
-
-    closeFoodModal();
-
-    document
-        .getElementById("foodName").value="";
-
-    document
-        .getElementById("foodCalories").value="";
-
-    document
-        .getElementById("foodProtein").value="";
-
-    document
-        .getElementById("foodCarbs").value="";
-
-    document
-        .getElementById("foodFat").value="";
-
-
-    toast("تمت إضافة الوجبة 🍽️");
-
-}
-
-
-function deleteFood(index){
-
-    foods.splice(index,1);
-
-    saveData();
-
-    updateFood();
-
-    toast("تم حذف الوجبة.");
-
-}
-
-
-function updateFood(){
-
-    const totalCalories =
-        foods.reduce((s,f)=>s+f.calories,0);
-
-    const totalProtein =
-        foods.reduce((s,f)=>s+f.protein,0);
-
-    const totalCarbs =
-        foods.reduce((s,f)=>s+f.carbs,0);
-
-    const totalFat =
-        foods.reduce((s,f)=>s+f.fat,0);
-
-
-    const remaining =
-        Math.max(0,user.calories-totalCalories);
-
-
-    document.getElementById("eatenCalories")
-        .textContent = Math.round(totalCalories);
-
-    document.getElementById("remainingCalories")
-        .textContent = Math.round(remaining);
-
-
-    const percentage =
-        Math.min(
-            100,
-            (totalCalories/user.calories)*100
-        );
-
-
-    document.getElementById("calorieProgress")
-        .style.width = percentage+"%";
-
-
-    document.getElementById("ring")
-        .style.background =
-        `conic-gradient(
-            var(--green) ${percentage*3.6}deg,
-            #1d2732 ${percentage*3.6}deg
-        )`;
-
-
-    document.getElementById("ringPercent")
-        .textContent =
-        Math.round(percentage)+"%";
-
-
-    setMacro(
-        "proteinCurrent",
-        "proteinBar",
-        totalProtein,
-        user.protein
-    );
-
-    setMacro(
-        "carbCurrent",
-        "carbBar",
-        totalCarbs,
-        user.carbs
-    );
-
-    setMacro(
-        "fatCurrent",
-        "fatBar",
-        totalFat,
-        user.fat
-    );
-
-
-    renderFoodList(
-        document.getElementById("foodList")
-    );
-
-    renderFoodList(
-        document.getElementById("nutritionFoodList")
-    );
-
-
-    document.getElementById("nutritionCalories")
-        .textContent = Math.round(totalCalories);
-
-    document.getElementById("nutritionProtein")
-        .textContent = Math.round(totalProtein);
-
-    document.getElementById("nutritionCarbs")
-        .textContent = Math.round(totalCarbs);
-
-}
-
-
-function setMacro(
-    valueId,
-    barId,
-    current,
-    target
-){
-
-    document.getElementById(valueId)
-        .textContent = Math.round(current);
-
-    document.getElementById(barId)
-        .style.width =
-        Math.min(100,(current/target)*100)+"%";
-
-}
-
-
-function renderFoodList(container){
-
-    if(!container) return;
-
-    if(foods.length===0){
-
-        container.innerHTML =
-        `<div style="
-            text-align:center;
-            padding:25px;
-            color:var(--muted)
-        ">
-            لا توجد وجبات مسجلة.
-        </div>`;
-
-        return;
-    }
-
-
-    container.innerHTML =
-        foods.map((food,index)=>`
-
-            <div class="food-item">
-
-                <div class="food-info">
-
-                    <div class="food-icon">
-                        🍽️
-                    </div>
-
-                    <div>
-                        <strong>${escapeHTML(food.name)}</strong>
-                        <small>
-                            P ${food.protein}g ·
-                            C ${food.carbs}g ·
-                            F ${food.fat}g
-                        </small>
-                    </div>
-
-                </div>
-
-                <div>
-                    <span class="food-cal">
-                        ${food.calories} kcal
-                    </span>
-
-                    <button
-                        onclick="deleteFood(${index})"
-                        style="
-                            border:0;
-                            background:none;
-                            color:#ff6972;
-                            margin-right:10px;
-                        "
-                    >
-                        ×
-                    </button>
-                </div>
-
-            </div>
-
-        `).join("");
-
-}
-
-
-/* =====================================================
-   AI IMAGE MOCK
-===================================================== */
-
-function previewFood(event){
-
-    const file =
-        event.target.files[0];
-
-    if(!file) return;
-
-    const preview =
-        document.getElementById("preview");
-
-    preview.src =
-        URL.createObjectURL(file);
-
-    preview.style.display="block";
-
-
-    /*
-       هذا مجرد Demo محلي.
-       في النسخة الحقيقية يتم إرسال الصورة إلى
-       API Vision ثم إرجاع السعرات والماكروز.
-    */
-
-    setTimeout(()=>{
-
-        document.getElementById("aiResult")
-            .classList.remove("hidden");
-
-        /*
-           قيم تقديرية تجريبية.
-           يجب استبدالها بتحليل AI حقيقي.
-        */
-
-        document.getElementById("aiCalories")
-            .textContent = 520;
-
-        document.getElementById("aiProtein")
-            .textContent = 34;
-
-        document.getElementById("aiCarbs")
-            .textContent = 48;
-
-        toast("تم إنشاء تقدير للوجبة 📷");
-
-    },700);
-
-}
-
-
-function addAIResult(){
-
-    foods.push({
-        name:"وجبة مصوّرة",
-        calories:520,
-        protein:34,
-        carbs:48,
-        fat:18
-    });
-
-    saveData();
-
-    updateFood();
-
-    toast("تمت إضافة الوجبة إلى يومك 🍽️");
-
-}
-
-
-/* =====================================================
-   WORKOUT
-===================================================== */
-
-function updateDays(value){
-
-    workoutDays =
-        Number(value);
-
-    document.getElementById("daysValue")
-        .textContent=value;
-
-}
-
-
-function toggleRest(day){
-
-    day.classList.toggle("selected");
-
-    const small =
-        day.querySelector("small");
-
-    if(day.classList.contains("selected")){
-        small.textContent="راحة";
-    }else{
-        small.textContent="تدريب";
-    }
-
-}
-
-
-function generateWorkout(){
-
-    const container =
-        document.getElementById("workoutExercises");
-
-    if(!container) return;
-
-
-    container.innerHTML =
-        exercises.map((ex,index)=>`
-
-            <div class="exercise">
-
-                <div class="exercise-number">
-                    ${index+1}
-                </div>
-
-                <div class="exercise-main">
-                    <strong>${ex[0]}</strong>
-                    <small>${ex[2]}</small>
-                </div>
-
-                <div class="exercise-count">
-                    ${ex[1]}
-                </div>
-
-            </div>
-
-        `).join("");
-
-
-    const today =
-        document.getElementById("todayWorkout");
-
-    if(today){
-
-        today.innerHTML =
-        exercises.slice(0,4).map(ex=>`
-
-            <div class="exercise">
-
-                <div class="exercise-main">
-                    <strong>${ex[0]}</strong>
-                    <small>${ex[2]}</small>
-                </div>
-
-                <div class="exercise-count">
-                    ${ex[1]}
-                </div>
-
-            </div>
-
-        `).join("");
-
-    }
-
-}
-
-
-/* =====================================================
-   TIMER
-===================================================== */
-
-function startTimer(){
-
-    clearInterval(timerInterval);
-
-    timerSeconds=60;
-
-    updateTimer();
-
-    timerInterval =
-        setInterval(()=>{
-
-            timerSeconds--;
-
-            updateTimer();
-
-            if(timerSeconds<=0){
-
-                clearInterval(timerInterval);
-
-                toast("انتهت الراحة! 🔥");
-
-                if("vibrate" in navigator){
-                    navigator.vibrate(300);
-                }
-
-            }
-
-        },1000);
-
-}
-
-
-function updateTimer(){
-
-    const minutes =
-        Math.floor(timerSeconds/60);
-
-    const seconds =
-        timerSeconds%60;
-
-    document.getElementById("timer")
-        .textContent =
-        String(minutes).padStart(2,"0")
-        + ":" +
-        String(seconds).padStart(2,"0");
-
-}
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
-
-function updateProgress(){
-
-    document.getElementById("progressWeight")
-        .textContent = user.weight;
-
-    document.getElementById("progressCalories")
-        .textContent = user.calories;
-
-    document.getElementById("progressDays")
-        .textContent = workoutDays;
-
-
-    document.getElementById("profileSummary")
-        .innerHTML = `
-
-            <div>👤 الاسم: <strong style="color:white">${escapeHTML(user.name)}</strong></div>
-            <div>🎂 العمر: <strong style="color:white">${user.age}</strong> سنة</div>
-            <div>⚖️ الوزن: <strong style="color:white">${user.weight}</strong> kg</div>
-            <div>📏 الطول: <strong style="color:white">${user.height}</strong> cm</div>
-            <div>🔥 السعرات: <strong style="color:var(--green)">${user.calories}</strong> kcal</div>
-            <div>🥩 البروتين: <strong style="color:white">${user.protein}g</strong></div>
-            <div>🍚 الكربوهيدرات: <strong style="color:white">${user.carbs}g</strong></div>
-            <div>🥑 الدهون: <strong style="color:white">${user.fat}g</strong></div>
-
-        `;
-
-}
-
-
-/* =====================================================
-   LOCAL STORAGE
-===================================================== */
+/* =========================================================
+   STATE
+========================================================= */
+
+let state = {
+
+  user:{
+    name:"",
+    age:20,
+    gender:"male",
+    weight:70,
+    height:175,
+    activity:1.375,
+    goal:"maintain"
+  },
+
+  target:{
+    calories:2200,
+    protein:112,
+    carbs:250,
+    fat:70
+  },
+
+  foods:[]
+
+};
+
+let selectedFood = null;
+let selectedFood2 = null;
+let timerInterval = null;
+let timerSeconds = 30;
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
 
 function saveData(){
 
-    localStorage.setItem(
-        "fittrack_user",
-        JSON.stringify(user)
-    );
-
-    localStorage.setItem(
-        "fittrack_foods",
-        JSON.stringify(foods)
-    );
+  localStorage.setItem(
+    "fittrack_pro_data",
+    JSON.stringify(state)
+  );
 
 }
-
 
 function loadData(){
 
-    try{
+  const saved = localStorage.getItem("fittrack_pro_data");
 
-        const savedUser =
-            localStorage.getItem("fittrack_user");
+  if(!saved) return false;
 
-        const savedFoods =
-            localStorage.getItem("fittrack_foods");
+  try{
 
+    state = JSON.parse(saved);
 
-        if(savedUser){
+    return true;
 
-            user =
-                JSON.parse(savedUser);
+  }catch(e){
 
-            foods =
-                savedFoods
-                ? JSON.parse(savedFoods)
-                : [];
+    return false;
 
-
-            document.getElementById("welcome")
-                .classList.add("hidden");
-
-            document.getElementById("setup")
-                .classList.add("hidden");
-
-            document.getElementById("app")
-                .classList.remove("hidden");
-
-            updateAll();
-
-        }
-
-    }catch(error){
-
-        console.log(error);
-
-    }
+  }
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  const exists = loadData();
+
+  if(exists){
+
+    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("setup").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+
+    initApp();
+
+  }
+
+});
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+function goToSetup(){
+
+  const name =
+    document.getElementById("userName").value.trim();
+
+  if(!name){
+
+    toast("اكتب اسمك أولاً");
+
+    return;
+  }
+
+  state.user.name = name;
+
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("setup").classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   CREATE PLAN
+========================================================= */
+
+function createPlan(){
+
+  const age =
+    Number(document.getElementById("age").value);
+
+  const gender =
+    document.getElementById("gender").value;
+
+  const weight =
+    Number(document.getElementById("weight").value);
+
+  const height =
+    Number(document.getElementById("height").value);
+
+  const activity =
+    Number(document.getElementById("activity").value);
+
+  const goal =
+    document.getElementById("goal").value;
+
+
+  if(
+    !age ||
+    !weight ||
+    !height ||
+    age < 13 ||
+    weight < 30 ||
+    height < 120
+  ){
+
+    toast("تأكد من إدخال البيانات بشكل صحيح");
+
+    return;
+  }
+
+
+  state.user.age = age;
+  state.user.gender = gender;
+  state.user.weight = weight;
+  state.user.height = height;
+  state.user.activity = activity;
+  state.user.goal = goal;
+
+
+  /* Mifflin St Jeor */
+
+  let bmr;
+
+  if(gender === "male"){
+
+    bmr =
+      (10 * weight) +
+      (6.25 * height) -
+      (5 * age) +
+      5;
+
+  }else{
+
+    bmr =
+      (10 * weight) +
+      (6.25 * height) -
+      (5 * age) -
+      161;
+
+  }
+
+
+  let calories =
+    Math.round(bmr * activity);
+
+
+  if(goal === "lose"){
+
+    calories -= 350;
+
+  }
+
+  if(goal === "gain"){
+
+    calories += 250;
+
+  }
+
+
+  calories =
+    Math.max(1400,Math.round(calories));
+
+
+  const protein =
+    Math.round(weight * 1.6);
+
+  const fat =
+    Math.round((calories * .27) / 9);
+
+  const carbs =
+    Math.max(
+      0,
+      Math.round(
+        (calories - protein*4 - fat*9) / 4
+      )
+    );
+
+
+  state.target = {
+
+    calories,
+    protein,
+    carbs,
+    fat
+
+  };
+
+
+  saveData();
+
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+
+  initApp();
+
+  toast("تم إنشاء خطتك بنجاح 🎉");
+
+}
+
+
+/* =========================================================
+   INIT APP
+========================================================= */
+
+function initApp(){
+
+  document.getElementById("displayName").textContent =
+    state.user.name;
+
+  document.getElementById("todayDate").textContent =
+    new Date().toLocaleDateString("ar-DZ",{
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    });
+
+  generateWorkout();
+
+  updateDashboard();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(page){
+
+  document.querySelectorAll(".page")
+    .forEach(el=>el.classList.add("hidden"));
+
+  const target =
+    document.getElementById(page);
+
+  if(target){
+
+    target.classList.remove("hidden");
+
+  }
+
+
+  document.querySelectorAll("[data-page]")
+    .forEach(btn=>{
+
+      btn.classList.toggle(
+        "active",
+        btn.dataset.page === page
+      );
+
+    });
+
+
+  updateDashboard();
+
+}
+
+
+/* =========================================================
+   FOOD SEARCH
+========================================================= */
+
+function normalize(str){
+
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[أإآ]/g,"ا")
+    .replace(/ة/g,"ه")
+    .replace(/\s+/g," ");
+
+}
+
+
+function searchFood(query){
+
+  const box =
+    document.getElementById("suggestions");
+
+  const q =
+    normalize(query);
+
+
+  if(!q){
+
+    box.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  const results =
+    foods.filter(food=>{
+
+      const name =
+        normalize(food.name);
+
+      const aliases =
+        food.aliases.map(normalize);
+
+      return (
+        name.includes(q) ||
+        aliases.some(a=>a.includes(q))
+      );
+
+    }).slice(0,8);
+
+
+  if(!results.length){
+
+    box.innerHTML = `
+      <div class="suggestion">
+        <span>لا توجد أكلة مطابقة</span>
+        <small>جرّب اسمًا آخر</small>
+      </div>
+    `;
+
+    box.classList.remove("hidden");
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    results.map((food,index)=>`
+
+      <div
+        class="suggestion"
+        onclick="selectFood(${foods.indexOf(food)})"
+      >
+
+        <span>
+          ${food.icon} ${food.name}
+        </span>
+
+        <small>
+          ${food.cal} kcal / 100g
+        </small>
+
+      </div>
+
+    `).join("");
+
+
+  box.classList.remove("hidden");
+
+}
+
+
+function selectFood(index){
+
+  selectedFood = foods[index];
+
+  document.getElementById("foodSearch").value =
+    selectedFood.name;
+
+  document.getElementById("suggestions")
+    .classList.add("hidden");
+
+  renderSelectedFood(
+    selectedFood,
+    document.getElementById("foodAmount").value,
+    "selectedFood"
+  );
+
+}
+
+
+function searchFood2(query){
+
+  const box =
+    document.getElementById("suggestions2");
+
+  const q =
+    normalize(query);
+
+
+  if(!q){
+
+    box.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  const results =
+    foods.filter(food=>{
+
+      const name = normalize(food.name);
+
+      const aliases =
+        food.aliases.map(normalize);
+
+      return (
+        name.includes(q) ||
+        aliases.some(a=>a.includes(q))
+      );
+
+    }).slice(0,8);
+
+
+  box.innerHTML =
+    results.length
+      ? results.map(food=>`
+
+        <div
+          class="suggestion"
+          onclick="selectFood2(${foods.indexOf(food)})"
+        >
+
+          <span>
+            ${food.icon} ${food.name}
+          </span>
+
+          <small>${food.cal} kcal / 100g</small>
+
+        </div>
+
+      `).join("")
+      : `
+        <div class="suggestion">
+          لا توجد نتائج
+        </div>
+      `;
+
+
+  box.classList.remove("hidden");
+
+}
+
+
+function selectFood2(index){
+
+  selectedFood2 = foods[index];
+
+  document.getElementById("foodSearch2").value =
+    selectedFood2.name;
+
+  document.getElementById("suggestions2")
+    .classList.add("hidden");
+
+  renderSelectedFood(
+    selectedFood2,
+    document.getElementById("foodAmount2").value,
+    "selectedFood2"
+  );
+
+}
+
+
+/* =========================================================
+   CALCULATE FOOD
+========================================================= */
+
+function calculateFood(food,grams){
+
+  const factor =
+    Number(grams) / 100;
+
+  return {
+
+    calories:Math.round(food.cal * factor),
+
+    protein:Number((food.p * factor).toFixed(1)),
+
+    carbs:Number((food.c * factor).toFixed(1)),
+
+    fat:Number((food.f * factor).toFixed(1))
+
+  };
+
+}
+
+
+function renderSelectedFood(food,grams,id){
+
+  if(!food) return;
+
+  const values =
+    calculateFood(food,grams);
+
+  document.getElementById(id).innerHTML = `
+
+    <div class="food-result">
+
+      <div class="food-name">
+
+        <strong>
+          ${food.icon} ${food.name}
+        </strong>
+
+        <small>
+          ${grams} غرام
+        </small>
+
+      </div>
+
+      <div class="macro-mini">
+        <strong>${values.calories}</strong>
+        <small>kcal</small>
+      </div>
+
+      <div class="macro-mini">
+        <strong>${values.protein}g</strong>
+        <small>بروتين</small>
+      </div>
+
+      <div class="macro-mini">
+        <strong>${values.carbs}g</strong>
+        <small>كربوهيدرات</small>
+      </div>
+
+      <div class="macro-mini">
+        <strong>${values.fat}g</strong>
+        <small>دهون</small>
+      </div>
+
+    </div>
+
+  `;
+
+  document.getElementById(id)
+    .classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   ADD FOOD
+========================================================= */
+
+function addSelectedFood(){
+
+  const grams =
+    Number(document.getElementById("foodAmount").value);
+
+  if(!selectedFood){
+
+    const query =
+      document.getElementById("foodSearch").value.trim();
+
+    if(query){
+
+      const result =
+        foods.find(food=>
+          normalize(food.name) === normalize(query)
+        );
+
+      if(result){
+
+        selectedFood = result;
+
+      }
+
+    }
+
+  }
+
+
+  if(!selectedFood){
+
+    toast("اختر أكلة من القائمة أولاً");
+
+    return;
+
+  }
+
+
+  addFoodToLog(selectedFood,grams);
+
+}
+
+
+function addSelectedFood2(){
+
+  const grams =
+    Number(document.getElementById("foodAmount2").value);
+
+  if(!selectedFood2){
+
+    const query =
+      document.getElementById("foodSearch2").value.trim();
+
+    const result =
+      foods.find(food=>
+        normalize(food.name) === normalize(query)
+      );
+
+    if(result){
+
+      selectedFood2 = result;
+
+    }
+
+  }
+
+
+  if(!selectedFood2){
+
+    toast("اختر أكلة من القائمة أولاً");
+
+    return;
+
+  }
+
+
+  addFoodToLog(selectedFood2,grams);
+
+}
+
+
+function addFoodToLog(food,grams){
+
+  if(!grams || grams <= 0){
+
+    toast("أدخل كمية صحيحة");
+
+    return;
+
+  }
+
+
+  const values =
+    calculateFood(food,grams);
+
+
+  state.foods.push({
+
+    id:Date.now(),
+
+    name:food.name,
+
+    icon:food.icon,
+
+    grams:Number(grams),
+
+    calories:values.calories,
+
+    protein:values.protein,
+
+    carbs:values.carbs,
+
+    fat:values.fat,
+
+    time:new Date().toLocaleTimeString("ar-DZ",{
+      hour:"2-digit",
+      minute:"2-digit"
+    })
+
+  });
+
+
+  saveData();
+
+  updateDashboard();
+
+  toast(
+    `تمت إضافة ${food.name} — ${values.calories} kcal`
+  );
+
+
+  selectedFood = null;
+  selectedFood2 = null;
+
+
+  document.getElementById("foodSearch").value = "";
+  document.getElementById("foodSearch2").value = "";
+
+  document.getElementById("selectedFood")
+    .classList.add("hidden");
+
+  document.getElementById("selectedFood2")
+    .classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   DELETE FOOD
+========================================================= */
+
+function deleteFood(id){
+
+  state.foods =
+    state.foods.filter(food=>food.id !== id);
+
+  saveData();
+
+  updateDashboard();
+
+  toast("تم حذف الطعام");
+
+}
+
+
+/* =========================================================
+   TOTALS
+========================================================= */
+
+function getTotals(){
+
+  return state.foods.reduce(
+    (total,food)=>{
+
+      total.calories += food.calories;
+      total.protein += food.protein;
+      total.carbs += food.carbs;
+      total.fat += food.fat;
+
+      return total;
+
+    },
+    {
+      calories:0,
+      protein:0,
+      carbs:0,
+      fat:0
+    }
+  );
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+  if(!state.target) return;
+
+  const totals =
+    getTotals();
+
+
+  const remaining =
+    Math.max(
+      0,
+      state.target.calories - totals.calories
+    );
+
+
+  document.getElementById("targetCalories").textContent =
+    state.target.calories;
+
+
+  document.getElementById("remainingCalories").textContent =
+    remaining;
+
+
+  document.getElementById("proteinEaten").textContent =
+    Math.round(totals.protein);
+
+  document.getElementById("carbsEaten").textContent =
+    Math.round(totals.carbs);
+
+  document.getElementById("fatEaten").textContent =
+    Math.round(totals.fat);
+
+
+  document.getElementById("proteinTarget").textContent =
+    state.target.protein;
+
+  document.getElementById("carbsTarget").textContent =
+    state.target.carbs;
+
+  document.getElementById("fatTarget").textContent =
+    state.target.fat;
+
+
+  setProgress(
+    "proteinProgress",
+    totals.protein,
+    state.target.protein
+  );
+
+  setProgress(
+    "carbsProgress",
+    totals.carbs,
+    state.target.carbs
+  );
+
+  setProgress(
+    "fatProgress",
+    totals.fat,
+    state.target.fat
+  );
+
+
+  const percentage =
+    Math.min(
+      100,
+      (totals.calories / state.target.calories) * 100
+    );
+
+
+  const degrees =
+    percentage * 3.6;
+
+
+  document.getElementById("calorieRing").style.background =
+    `conic-gradient(
+      var(--primary) ${degrees}deg,
+      #222d43 ${degrees}deg
+    )`;
+
+
+  renderFoodLists();
+
+
+  document.getElementById("progressWeight").textContent =
+    state.user.weight;
+
+  document.getElementById("progressCalories").textContent =
+    Math.round(totals.calories);
+
+  document.getElementById("progressFoods").textContent =
+    state.foods.length;
+
+
+  document.getElementById("summaryCalories").textContent =
+    state.target.calories;
+
+  document.getElementById("summaryProtein").textContent =
+    state.target.protein;
+
+  document.getElementById("summaryCarbs").textContent =
+    state.target.carbs;
+
+  document.getElementById("summaryFat").textContent =
+    state.target.fat;
+
+}
+
+
+function setProgress(id,current,target){
+
+  const percent =
+    Math.min(
+      100,
+      Math.max(0,(current / target) * 100)
+    );
+
+  document.getElementById(id).style.width =
+    percent + "%";
+
+}
+
+
+/* =========================================================
+   FOOD LIST
+========================================================= */
+
+function renderFoodLists(){
+
+  const containers = [
+
+    document.getElementById("dashboardFoodList"),
+    document.getElementById("nutritionFoodList")
+
+  ];
+
+
+  let html = "";
+
+
+  if(!state.foods.length){
+
+    html = `
+      <div class="empty">
+        لم تضف أي طعام اليوم 🍽️
+        <br>
+        اكتب اسم الأكلة في الأعلى لإضافتها.
+      </div>
+    `;
+
+  }else{
+
+    html =
+      state.foods
+      .slice()
+      .reverse()
+      .map(food=>`
+
+        <div class="food-item">
+
+          <div class="food-info">
+
+            <div class="food-icon">
+              ${food.icon || "🍽️"}
+            </div>
+
+            <div>
+
+              <strong>${food.name}</strong>
+
+              <small>
+                ${food.grams}غ · ${food.time}
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="food-calories">
+
+            <strong>
+              ${food.calories} kcal
+            </strong>
+
+            <small>
+              P ${food.protein}g ·
+              C ${food.carbs}g ·
+              F ${food.fat}g
+            </small>
+
+          </div>
+
+          <button
+            class="delete-btn"
+            onclick="deleteFood(${food.id})"
+            title="حذف"
+          >
+            ×
+          </button>
+
+        </div>
+
+      `).join("");
+
+  }
+
+
+  containers.forEach(container=>{
+
+    if(container){
+
+      container.innerHTML = html;
+
+    }
+
+  });
+
+
+  const count =
+    document.getElementById("foodCount");
+
+  if(count){
+
+    count.textContent =
+      `${state.foods.length} عنصر`;
+
+  }
+
+}
+
+
+/* =========================================================
+   CAMERA
+========================================================= */
+
+function previewFood(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+
+  const preview =
+    document.getElementById("cameraPreview");
+
+  const result =
+    document.getElementById("photoResult");
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(e){
+
+    preview.src = e.target.result;
+
+    preview.style.display = "block";
+
+
+    result.innerHTML = `
+
+      <div style="line-height:2">
+
+        <strong>📷 تم التقاط الصورة</strong>
+
+        <p class="muted">
+          الصورة جاهزة للتحليل.
+        </p>
+
+        <p>
+          ⚠️ لا يتم تقدير السعرات من الصورة
+          تلقائيًا في هذا الملف بدون ربط
+          خدمة ذكاء اصطناعي حقيقية.
+        </p>
+
+        <button
+          class="btn"
+          onclick="showPage('nutrition')"
+          style="margin-top:10px"
+        >
+          إدخال اسم الوجبة يدويًا
+        </button>
+
+      </div>
+
+    `;
+
+    result.classList.remove("hidden");
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+function clearPhoto(){
+
+  const input =
+    document.getElementById("foodImage");
+
+  const preview =
+    document.getElementById("cameraPreview");
+
+  const result =
+    document.getElementById("photoResult");
+
+
+  input.value = "";
+
+  preview.src = "";
+
+  preview.style.display = "none";
+
+  result.classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   WORKOUT
+========================================================= */
+
+function generateWorkout(){
+
+  const days =
+    Number(document.getElementById("trainingDays").value);
+
+  const duration =
+    Number(document.getElementById("trainingDuration").value);
+
+
+  let multiplier = 1;
+
+  if(duration >= 45){
+
+    multiplier = 1.4;
+
+  }else if(duration >= 30){
+
+    multiplier = 1.15;
+
+  }
+
+
+  const base = [
+
+    {
+      icon:"💪",
+      name:"Push-ups",
+      ar:"تمارين الضغط",
+      reps:10
+    },
+
+    {
+      icon:"🦵",
+      name:"Squats",
+      ar:"القرفصاء",
+      reps:15
+    },
+
+    {
+      icon:"🔥",
+      name:"Crunches",
+      ar:"تمارين البطن",
+      reps:15
+    },
+
+    {
+      icon:"🏋️",
+      name:"Lunges",
+      ar:"الاندفاع",
+      reps:10
+    },
+
+    {
+      icon:"🧱",
+      name:"Plank",
+      ar:"بلانك",
+      reps:30
+    },
+
+    {
+      icon:"🦾",
+      name:"Glute Bridge",
+      ar:"رفع الحوض",
+      reps:15
+    }
+
+  ];
+
+
+  const exercises =
+    base.map(ex=>({
+
+      ...ex,
+
+      reps:
+        Math.round(ex.reps * multiplier)
+
+    }));
+
+
+  document.getElementById("workoutDescription").textContent =
+    `${days} أيام أسبوعيًا · ${duration} دقيقة`;
+
+
+  document.getElementById("exerciseList").innerHTML =
+    exercises.map(ex=>`
+
+      <div class="exercise">
+
+        <div class="exercise-left">
+
+          <div class="exercise-icon">
+            ${ex.icon}
+          </div>
+
+          <div>
+
+            <strong>${ex.ar}</strong>
+
+            <div class="muted">
+              ${ex.name}
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+          ${ex.name === "Plank"
+            ? ex.reps + " ثانية"
+            : ex.reps + " تكرار"}
+        </span>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function updateTimer(){
+
+  const min =
+    String(Math.floor(timerSeconds / 60)).padStart(2,"0");
+
+  const sec =
+    String(timerSeconds % 60).padStart(2,"0");
+
+  document.getElementById("timerNumber").textContent =
+    `${min}:${sec}`;
+
+}
+
+
+function startTimer(){
+
+  if(timerInterval) return;
+
+
+  timerInterval =
+    setInterval(()=>{
+
+      if(timerSeconds <= 0){
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+        toast("انتهى الوقت 🔥");
+
+        return;
+
+      }
+
+
+      timerSeconds--;
+
+      updateTimer();
+
+    },1000);
+
+}
+
+
+function resetTimer(){
+
+  clearInterval(timerInterval);
+
+  timerInterval = null;
+
+  timerSeconds = 30;
+
+  updateTimer();
+
+}
+
+
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 function toast(message){
 
-    const element =
-        document.getElementById("toast");
+  const el =
+    document.getElementById("toast");
 
-    element.textContent=message;
+  el.textContent = message;
 
-    element.classList.add("show");
+  el.classList.add("show");
 
+
+  clearTimeout(window.toastTimer);
+
+
+  window.toastTimer =
     setTimeout(()=>{
-        element.classList.remove("show");
+
+      el.classList.remove("show");
+
     },2500);
 
 }
 
 
-/* =====================================================
-   SECURITY / TEXT
-===================================================== */
+/* =========================================================
+   CLOSE SUGGESTIONS WHEN CLICKING OUTSIDE
+========================================================= */
 
-function escapeHTML(text){
+document.addEventListener("click",(event)=>{
 
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+  if(!event.target.closest(".food-search")){
 
-}
+    document
+      .querySelectorAll(".suggestions")
+      .forEach(el=>
+        el.classList.add("hidden")
+      );
+
+  }
+
+});
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   UPDATE PREVIEW WHEN GRAMS CHANGE
+========================================================= */
 
-loadData();
+document.getElementById("foodAmount")
+?.addEventListener("input",()=>{
+
+  if(selectedFood){
+
+    renderSelectedFood(
+      selectedFood,
+      document.getElementById("foodAmount").value,
+      "selectedFood"
+    );
+
+  }
+
+});
+
+
+document.getElementById("foodAmount2")
+?.addEventListener("input",()=>{
+
+  if(selectedFood2){
+
+    renderSelectedFood(
+      selectedFood2,
+      document.getElementById("foodAmount2").value,
+      "selectedFood2"
+    );
+
+  }
+
+});
 
 </script>
 
